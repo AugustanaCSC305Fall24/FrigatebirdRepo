@@ -1,5 +1,4 @@
 package edu.augustana;
 
-public class Sound {
-
+public class Frequency {
 }
