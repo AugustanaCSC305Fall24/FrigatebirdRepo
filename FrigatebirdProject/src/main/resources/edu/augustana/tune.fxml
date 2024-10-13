@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.lang.String?>
+
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="edu.augustana.TuneUIController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" layoutX="50" layoutY="50">
+            <!-- Frequency Controls -->
+            <Label text="Frequency (MHz)" />
+            <Slider fx:id="frequencySlider" min="0" max="30000" value="15000" />
+            <Label fx:id="frequencyLabel" text="15.00 MHz" />
+
+            <!-- Filter Mode Controls -->
+            <Label text="Filter Mode" />
+            <ComboBox fx:id="filterModeComboBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Bandpass" />
+                        <String fx:value="Low-pass" />
+                        <String fx:value="High-pass" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- Volume Controls -->
+            <Label text="Volume" />
+            <Slider fx:id="volumeSlider" min="0" max="100" value="50" />
+        </VBox>
+    </children>
+</AnchorPane>
