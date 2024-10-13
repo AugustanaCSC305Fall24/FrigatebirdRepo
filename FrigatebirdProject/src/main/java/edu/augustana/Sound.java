@@ -1,5 +1,10 @@
 package edu.augustana;
 
-public class Sound {
+
+public class Sound extends Morse {
+
+
+
+
 
 }
