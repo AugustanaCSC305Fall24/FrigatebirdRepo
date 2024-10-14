@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CWReceiverController">
    <children>
+      <Button mnemonicParsing="false" onAction="#setBackAction" text="Back" />
       <Label layoutX="251.0" layoutY="35.0" prefHeight="17.0" prefWidth="98.0" text="Enter Message" />
       <TextField fx:id="messageInput" layoutX="211.0" layoutY="61.0" />
       <Label layoutX="242.0" layoutY="118.0" prefHeight="17.0" prefWidth="98.0" text="Enter Frequency" />
