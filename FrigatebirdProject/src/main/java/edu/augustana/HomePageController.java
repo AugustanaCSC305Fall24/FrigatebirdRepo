@@ -9,5 +9,10 @@ public class HomePageController {
     private void switchToTuningView() throws IOException {
         App.setRoot("tune");
     }
+
+    @FXML
+    private void switchToCWReceiver() throws IOException {
+        App.setRoot("CWReceiver");
+    }
 }
 

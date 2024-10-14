@@ -1,10 +1,10 @@
 package edu.augustana;
 
 /**
- * TuneController manages the state of the radio, including frequency tuning,
+ * HAMRadio manages the state of the radio, including frequency tuning,
  * filter mode selection, and volume settings.
  */
-public class TuneController {
+public class HAMRadio {
     private double frequency; // Frequency in kHz
     private String filterMode; // Bandpass, Low-pass, High-pass
     private double volume; // Volume from 0 to 100
@@ -12,7 +12,7 @@ public class TuneController {
     /**
      * Default constructor initializes the radio with default settings.
      */
-    public TuneController() {
+    public HAMRadio() {
         this.frequency = 15000; // Default frequency: 15 MHz
         this.filterMode = "Bandpass"; // Default filter mode
         this.volume = 50; // Default volume: 50%
@@ -30,6 +30,7 @@ public class TuneController {
             System.out.println("Error: Frequency out of range.");
         }
     }
+
 
     /**
      * Gets the current frequency setting.
@@ -79,5 +80,14 @@ public class TuneController {
      */
     public double getVolume() {
         return volume;
+    }
+
+    @Override
+    public String toString() {
+        return "HAMRadio{" +
+                "frequency=" + frequency +
+                ", filterMode='" + filterMode + '\'' +
+                ", volume=" + volume +
+                '}';
     }
 }
