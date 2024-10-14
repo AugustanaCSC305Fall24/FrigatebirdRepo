@@ -43,6 +43,20 @@ public class Morse {
         this.morseMap.put('7', "--...");
         this.morseMap.put('8', "---..");
         this.morseMap.put('9', "----.");
+        this.morseMap.put('.', ".-.-.-");
+        this.morseMap.put(',', "--..--");
+        this.morseMap.put('?', "..--..");
+        this.morseMap.put('!', "-.-.--");
+        this.morseMap.put(':', "---...");
+        this.morseMap.put(';', "-.-.-.");
+        this.morseMap.put('\'', ".----.");
+        this.morseMap.put('"', ".-..-.");
+        this.morseMap.put('-', "-....-");
+        this.morseMap.put('/', "-..-.");
+        this.morseMap.put('(', "-.--.-");
+        this.morseMap.put(')', "-.--.-");
+        this.morseMap.put('=', "-...-");
+        this.morseMap.put('@', ".--.-.");
     }
 
     public String toMorse(String message) {
@@ -52,8 +66,8 @@ public class Morse {
         char[] var4 = message.toCharArray();
         int var5 = var4.length;
 
-        for(int var6 = 0; var6 < var5; ++var6) {
-            char c = var4[var6];
+        for(int i = 0; i < var5; ++i) {
+            char c = var4[i];
             if (this.morseMap.containsKey(c)) {
                 if (!first) {
                     result = result + " ";
