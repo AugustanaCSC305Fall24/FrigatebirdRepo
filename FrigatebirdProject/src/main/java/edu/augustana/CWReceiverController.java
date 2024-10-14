@@ -21,17 +21,20 @@ public class CWReceiverController {
     @FXML
     public void onTransmitButtonClick() {
         String message = messageInput.getText();
-        String frequency = frequencyInput.getText();
-        // Convert the message to Morse code using the Morse class
+
+        // Convert message to Morse code
         Morse morseConverter = new Morse();
         String morseCode = morseConverter.toMorse(message);
 
+        // Display the Morse code
         morsecodeMessage.setText(morseCode);
 
-        System.out.println("Message: " + message);
-        System.out.println("Frequency: " + frequency);
-        System.out.println("Morse Code: " + morseCode);
+        // Play the Morse code using tones
+        Sound soundPlayer = new Sound();
+        new Thread(() -> soundPlayer.playMorseSymbol(morseCode)).start();  // Play asynchronously
     }
+
+
 
     @FXML
     void setBackAction(ActionEvent event) throws IOException {
