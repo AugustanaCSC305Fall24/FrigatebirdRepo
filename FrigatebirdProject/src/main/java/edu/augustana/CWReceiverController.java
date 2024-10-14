@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import javax.imageio.IIOException;
 import java.io.IOException;
@@ -17,6 +18,9 @@ public class CWReceiverController {
 
     @FXML
     private TextField morsecodeMessage;
+
+    @FXML
+    private VBox chatLogBox;
 
     @FXML
     public void onTransmitButtonClick() {
