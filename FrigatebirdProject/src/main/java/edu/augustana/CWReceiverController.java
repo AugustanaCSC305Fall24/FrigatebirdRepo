@@ -16,12 +16,21 @@ public class CWReceiverController {
     private TextArea morseDisplay;
 
     @FXML
+    private TextField morsecodeMessage;
+
+    @FXML
     public void onTransmitButtonClick() {
         String message = messageInput.getText();
         String frequency = frequencyInput.getText();
+        // Convert the message to Morse code using the Morse class
+        Morse morseConverter = new Morse();
+        String morseCode = morseConverter.toMorse(message);
+
+        morsecodeMessage.setText(morseCode);
 
         System.out.println("Message: " + message);
         System.out.println("Frequency: " + frequency);
+        System.out.println("Morse Code: " + morseCode);
     }
 
     @FXML
