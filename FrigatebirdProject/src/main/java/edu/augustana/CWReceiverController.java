@@ -18,18 +18,20 @@ public class CWReceiverController {
     @FXML
     public void onTransmitButtonClick() {
         String message = messageInput.getText();
+
+        // Convert message to Morse code
         Morse morseConverter = new Morse();
         String morseCode = morseConverter.toMorse(message);
 
+        // Display the Morse code
         morsecodeMessage.setText(morseCode);
 
-        // Play the Morse code using a new thread to avoid blocking the UI
-        new Thread(() -> soundPlayer.playMorseSymbol(morseCode)).start();
+        // Play the Morse code using tones
+        Sound soundPlayer = new Sound();
+        new Thread(() -> soundPlayer.playMorseSymbol(morseCode)).start();  // Play asynchronously
     }
 
-//    @FXML
-//    void StopButton(ActionEvent event) {
-//        // Stop the sound playback
-//        soundPlayer.stopPlayback();
-//    }
+
+
+
 }
