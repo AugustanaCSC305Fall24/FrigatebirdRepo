@@ -8,9 +8,6 @@ import javafx.scene.control.Slider;
 
 import java.io.IOException;
 
-/**
- * TuneUIController bridges the SceneBuilder UI with the backend TuneController logic.
- */
 public class TuneUIController {
 
     @FXML
@@ -22,14 +19,14 @@ public class TuneUIController {
     @FXML
     private Slider volumeSlider;
 
-    /**
-     * Initialize the UI and bind components to the TuneController logic.
-     */
+    private double savedFrequency;
+    private double savedVolume;
+    private String savedFilterMode;
+
     @FXML
     public void initialize() {
-
         HAMRadio radio = App.radio;
-        // Initialize frequency slider
+
         frequencySlider.setMin(0);
         frequencySlider.setMax(30000);
         frequencySlider.setValue(radio.getFrequency());
@@ -40,7 +37,6 @@ public class TuneUIController {
             radio.setFrequency(frequency);
         });
 
-        // Initialize filter mode ComboBox
         filterModeComboBox.getItems().addAll("Bandpass", "Low-pass", "High-pass");
         filterModeComboBox.setValue(radio.getFilterMode());
 
@@ -49,7 +45,6 @@ public class TuneUIController {
             radio.setFilterMode(filterMode);
         });
 
-        // Initialize volume slider
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
         volumeSlider.setValue(radio.getVolume());
@@ -62,7 +57,30 @@ public class TuneUIController {
 
     @FXML
     void backToHomeAction(ActionEvent event) throws IOException {
-        System.out.println("DEBUG: radio="+App.radio);
-        App.setRoot("HomePage");
+        App.setTuneUIController(this);  // Store controller reference in App
+        App.setRoot("HomePage");  // Go back to HomePage
+    }
+
+    public void saveSettings(ActionEvent event) {
+        savedFrequency = frequencySlider.getValue();
+        savedFilterMode = filterModeComboBox.getValue();
+        savedVolume = volumeSlider.getValue();
+
+        System.out.println("Settings Saved:");
+        System.out.println("Frequency: " + savedFrequency + " MHz");
+        System.out.println("Filter Mode: " + savedFilterMode);
+        System.out.println("Volume: " + savedVolume);
+    }
+
+    public double getSavedFrequency() {
+        return savedFrequency;
+    }
+
+    public String getSavedFilterMode() {
+        return savedFilterMode;
+    }
+
+    public double getSavedVolume() {
+        return savedVolume;
     }
 }
