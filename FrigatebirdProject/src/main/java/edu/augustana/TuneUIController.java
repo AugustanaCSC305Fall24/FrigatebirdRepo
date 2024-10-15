@@ -23,6 +23,8 @@ public class TuneUIController {
     private double savedVolume;
     private String savedFilterMode;
 
+    private Sound sound = new Sound();
+
     @FXML
     public void initialize() {
         HAMRadio radio = App.radio;
@@ -51,6 +53,7 @@ public class TuneUIController {
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
+            sound.setVolume(volume); // updating the volume in sound instance
             radio.setVolume(volume);
         });
     }

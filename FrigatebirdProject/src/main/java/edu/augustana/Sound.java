@@ -5,6 +5,11 @@ import javax.sound.sampled.*;
 public class Sound extends Morse {
 
  private static final int SAMPLE_RATE = 44100;  // Standard sample rate for audio
+ private double volume = 1.0; //Volume (range 0.0 to 1.0)
+
+ public void setVolume(double volume){
+  this.volume = volume / 100.0; //Convert slider value (0-100) to range (0.0-1.0)
+ }
 
  // Method to play a tone at a specific frequency and duration
  private void playTone(double frequency, int durationMs) {
