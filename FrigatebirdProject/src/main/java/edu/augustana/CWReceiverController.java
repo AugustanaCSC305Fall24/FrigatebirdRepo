@@ -17,7 +17,13 @@ public class CWReceiverController {
     private TextArea morsecodeMessage;
     @FXML
     private AnchorPane chatLogBox;
-    private VBox chatLogVBox = new VBox();    // VBox to hold the chat messages
+    private VBox chatLogVBox = new VBox();
+
+
+    @FXML
+    private TextArea chatBox;
+
+    // VBox to hold the chat messages
 
     private double savedFrequency;
     private String savedFilterMode;
@@ -58,6 +64,7 @@ public class CWReceiverController {
             Morse morseConverter = new Morse();
             String morseCode = morseConverter.toMorse(message);
 
+            appendToChatBox("Message: " + message);
 
         Label messageLabel = new Label("Message: " + message);
         chatLogVBox.getChildren().add(messageLabel);
@@ -81,4 +88,9 @@ public class CWReceiverController {
             System.out.println("Error: Frequency mismatch.");
         }
     }
+    private void appendToChatBox(String message) {
+        // Append the new message with a newline
+        chatBox.appendText(message + "\n");
+    }
+
 }
