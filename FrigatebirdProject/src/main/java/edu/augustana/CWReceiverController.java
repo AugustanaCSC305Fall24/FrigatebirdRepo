@@ -1,11 +1,15 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class CWReceiverController {
 
@@ -22,6 +26,9 @@ public class CWReceiverController {
 
     @FXML
     private TextArea chatBox;
+    
+    @FXML
+    private Button backButton;
 
     // VBox to hold the chat messages
 
@@ -45,6 +52,11 @@ public class CWReceiverController {
         System.out.println("Frequency: " + frequency);
         System.out.println("Filter Mode: " + filterMode);
         System.out.println("Volume: " + volume);
+    }
+
+    @FXML
+    void backToHomeAction(ActionEvent event) throws IOException {
+        App.setRoot("HomePage");  // Go back to HomePage
     }
 
     /**
