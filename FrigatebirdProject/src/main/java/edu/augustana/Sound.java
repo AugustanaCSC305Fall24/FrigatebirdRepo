@@ -1,6 +1,7 @@
 package edu.augustana;
 
 import javax.sound.sampled.*;
+import java.util.Random;
 
 public class Sound extends Morse {
 
