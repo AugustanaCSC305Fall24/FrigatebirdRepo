@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Morse {
     private Map<Character, String> morseMap = new HashMap();
-
+    private Map<String, Character> morseToCharMap = new HashMap<>();
     public Morse() {
         this.morseMap.put('A', ".-");
         this.morseMap.put('B', "-...");
@@ -57,6 +57,10 @@ public class Morse {
         this.morseMap.put(')', "-.--.-");
         this.morseMap.put('=', "-...-");
         this.morseMap.put('@', ".--.-.");
+
+        for (Map.Entry<Character, String> entry : morseMap.entrySet()) {
+            morseToCharMap.put(entry.getValue(), entry.getKey());
+        }
     }
 
     public String toMorse(String message) {
@@ -84,9 +88,26 @@ public class Morse {
         return result;
     }
 
+
+
 //    private void playMorseSymbol(String morseCode) {
 //        System.out.println("Playing Morse for: " + morseCode);
 //    }
+public String toEnglish(String morseMessage) {
+    String result = "";
+    String[] words = morseMessage.split("   ");  // Split by three spaces (word separator)
 
+    for (String word : words) {
+        String[] chars = word.split(" ");  // Split each word by single space (letter separator)
+        for (String morseChar : chars) {
+            if (this.morseToCharMap.containsKey(morseChar)) {
+                result += this.morseToCharMap.get(morseChar);
+            }
+        }
+        result += " ";  // Add a space between words
+    }
+
+    return result.trim();  // Remove trailing space
+}
 }
 
