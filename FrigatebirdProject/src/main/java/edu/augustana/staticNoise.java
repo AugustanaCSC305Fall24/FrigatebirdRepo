@@ -3,7 +3,10 @@ package edu.augustana;
 import javax.sound.sampled.*;
 import java.util.Random;
 
-public class staticNoise {
+public class staticNoise extends Frequency{
+
+    // supposed to play white noise courtesy of brownnoiseradio.com
+
     private void playStaticNoise() {
         AudioFormat audioFormat = new AudioFormat(44100, 16, 1, true, false);
         byte[] buffer = new byte[44100 * 2];

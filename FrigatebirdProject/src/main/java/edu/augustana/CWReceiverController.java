@@ -55,7 +55,7 @@ public class CWReceiverController {
     }
 
     @FXML
-    void backToHomeAction(ActionEvent event) throws IOException {
+    public void backToHomeAction(ActionEvent event) throws IOException {
         App.setRoot("HomePage");  // Go back to HomePage
     }
 
