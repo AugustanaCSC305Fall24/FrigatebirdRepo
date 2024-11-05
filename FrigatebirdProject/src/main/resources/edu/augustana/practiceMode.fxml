@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.augustana.practiceModeUIController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.practiceModeUIController">
+   <children>
+      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeAction" text="BACK" />
+      <TextArea editable="false" layoutX="42.0" layoutY="108.0" opacity="0.43" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: blue;">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </TextArea>
+      <TextField layoutX="307.0" layoutY="200.0" prefHeight="43.0" prefWidth="200.0" style="-fx-border-color: black;">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </TextField>
+      <Label alignment="CENTER" layoutX="213.0" layoutY="27.0" prefHeight="17.0" prefWidth="157.0" text="Practice Mode" textAlignment="JUSTIFY" textFill="#111111">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="142.0" layoutY="64.0" text="Enter the Morse Code for alphabets shown below:">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="307.0" layoutY="170.0" style="-fx-border-color: black;" text="Your Translation goes here:" />
+   </children>
 </AnchorPane>
