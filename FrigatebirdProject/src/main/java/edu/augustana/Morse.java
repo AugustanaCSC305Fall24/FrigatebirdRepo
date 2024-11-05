@@ -109,5 +109,6 @@ public String toEnglish(String morseMessage) {
 
     return result.trim();  // Remove trailing space
 }
+
 }
 

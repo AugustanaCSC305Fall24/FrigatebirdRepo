@@ -30,6 +30,8 @@ public class CWReceiverController {
     @FXML
     private Button backButton;
 
+    @FXML
+    private TextField morseInput;
     // VBox to hold the chat messages
 
     private double savedFrequency;
@@ -59,6 +61,20 @@ public class CWReceiverController {
         App.setRoot("HomePage");  // Go back to HomePage
     }
 
+    public void handleMorseInput() {
+        String input = morseInput.getText().trim();
+
+
+        if (input.equals("1")) {
+            morsecodeMessage.appendText(".");
+        } else if (input.equals("2")) {
+            morsecodeMessage.appendText("-");
+        } else {
+            System.out.println("Invalid input: Only '1' for dit and '2' for dah are allowed.");
+        }
+
+        morseInput.clear();
+    }
     /**
      * Called when the Transmit button is clicked.
      * Checks if the entered frequency is within the ±100 MHz range.
