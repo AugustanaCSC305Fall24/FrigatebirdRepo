@@ -3,7 +3,7 @@ package edu.augustana;
 import javax.sound.sampled.*;
 import java.util.Random;
 
-public class Sound extends Morse {
+public class Sound extends Morse  {
 
  private static final int SAMPLE_RATE = 44100;  // Standard sample rate for audio
  private double volume = 1.0; //Volume (range 0.0 to 1.0)
@@ -60,4 +60,5 @@ public class Sound extends Morse {
    }
   }
  }
+
 }

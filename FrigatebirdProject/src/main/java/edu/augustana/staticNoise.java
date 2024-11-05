@@ -4,6 +4,8 @@ import javax.sound.sampled.*;
 import java.nio.ByteBuffer;
 import java.util.Random;
 
+// courtesy of https://gist.github.com/m5mat/f622df23a49586337009c60a9966964c
+
 public class staticNoise extends Thread {
     private static staticNoise generatorThread;
 
