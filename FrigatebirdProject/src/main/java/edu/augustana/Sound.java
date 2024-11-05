@@ -29,7 +29,7 @@ public class Sound extends Morse  {
  }
  // Method to play a tone at a specific frequency and duration
  private void playTone(double frequency, int durationMs) {
-  if(!isPlaying) return;
+  if(!isPlaying) return; //exit if stopped
 
   try {
    byte[] buffer = generateTone(frequency, durationMs);  // Generate tone data
@@ -63,24 +63,27 @@ public class Sound extends Morse  {
 
  // Play Morse symbols with tones
  public void playMorseSymbol(String morseCode) {
-  isPlaying = true;
-
+  isPlaying = true; // reset isPlaying at the start
+  
   playbackThread = new Thread(() -> {
    for (char symbol : morseCode.toCharArray()) {
-    if (!isPlaying) break;
+    if (!isPlaying) break;  // Stop if the flag is set
 
     if (symbol == '.') {
-     playTone(600, 100);  // Play a 600 Hz tone for 100ms (dot)
+     playTone(600, 100);
     } else if (symbol == '-') {
-     playTone(600, 300);  // Play a 600 Hz tone for 300ms (dash)
+     playTone(600, 300);
     }
 
     try {
-     Thread.sleep(100);  // Pause between symbols
+     if (isPlaying) {
+      Thread.sleep(100);  // Pause between symbols
+     }
     } catch (InterruptedException e) {
-     Thread.currentThread().interrupt();  // Restore interrupted status
+     Thread.currentThread().interrupt();
+     break;
     }
-  }
+   }
   });
   playbackThread.start();
  }
