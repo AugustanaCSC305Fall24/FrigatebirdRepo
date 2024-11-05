@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="296.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TuneUIController">
     <children>
-      <Button mnemonicParsing="false" onAction="#backToHomeAction" text="Back" />
+        <Button mnemonicParsing="false" onAction="#backToHomeAction" text="Back" />
         <VBox alignment="CENTER" layoutX="50" layoutY="50" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="140.0" spacing="10">
             <!-- Frequency Controls -->
             <Label text="Frequency (MHz)" />
@@ -34,6 +34,7 @@
             <Label text="Volume" />
             <Slider fx:id="volumeSlider" max="100" min="0" value="50" />
         </VBox>
-      <Button layoutX="190.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveSettings" text=" Save" />
+        <Button layoutX="190.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveSettings" text=" Save" />
+        <Button layoutX="190.0" layoutY="300.0" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next" />
     </children>
 </AnchorPane>

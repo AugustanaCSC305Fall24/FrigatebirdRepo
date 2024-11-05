@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-
 import java.io.IOException;
 
 public class TuneUIController {
@@ -65,6 +64,7 @@ public class TuneUIController {
         App.setRoot("HomePage");  // Go back to HomePage
     }
 
+    @FXML
     public void saveSettings(ActionEvent event) {
         savedFrequency = frequencySlider.getValue();
         savedFilterMode = filterModeComboBox.getValue();
@@ -74,6 +74,16 @@ public class TuneUIController {
         System.out.println("Frequency: " + savedFrequency + " MHz");
         System.out.println("Filter Mode: " + savedFilterMode);
         System.out.println("Volume: " + savedVolume);
+    }
+
+    @FXML
+    public void onNextButtonClick(ActionEvent event) throws IOException {
+        // Save the settings
+        saveSettings(event);
+
+        // Navigate directly to CWReceiver
+        App.setTuneUIController(this);  // Store controller reference in App
+        App.setRoot("CWReceiver");  // Go directly to CWReceiver page
     }
 
     public double getSavedFrequency() {
