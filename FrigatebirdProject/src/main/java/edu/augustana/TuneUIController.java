@@ -60,6 +60,7 @@ public class TuneUIController {
 
     @FXML
     void backToHomeAction(ActionEvent event) throws IOException {
+        sound.stop(); // stop sound generation
         App.setTuneUIController(this);  // Store controller reference in App
         App.setRoot("HomePage");  // Go back to HomePage
     }
