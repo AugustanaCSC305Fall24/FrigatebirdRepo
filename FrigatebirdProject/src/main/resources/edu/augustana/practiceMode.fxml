@@ -31,5 +31,6 @@
             <Font name="Arial Black" size="96.0" />
          </font>
       </TextField>
+      <Button layoutX="370.0" layoutY="278.0" mnemonicParsing="false" onAction="#displayLetterAndCheckMorse" text="Refresh" />
    </children>
 </AnchorPane>
