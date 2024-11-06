@@ -61,7 +61,7 @@ public class CWReceiverController {
         App.setRoot("HomePage");  // Go back to HomePage
     }
 
-    
+
     public void handleMorseInput() {
         String input = morseInput.getText().trim();
 
