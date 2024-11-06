@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Morse {
-    private Map<Character, String> morseMap = new HashMap();
-    private Map<String, Character> morseToCharMap = new HashMap<>();
+    public Map<Character, String> morseMap = new HashMap();
+    public Map<String, Character> morseToCharMap = new HashMap<>();
     public Morse() {
         this.morseMap.put('A', ".-");
         this.morseMap.put('B', "-...");
