@@ -90,24 +90,21 @@ public class Morse {
 
 
 
-//    private void playMorseSymbol(String morseCode) {
-//        System.out.println("Playing Morse for: " + morseCode);
-//    }
+
 public String toEnglish(String morseMessage) {
     String result = "";
-    String[] words = morseMessage.split("   ");  // Split by three spaces (word separator)
-
+    String[] words = morseMessage.split("   ");
     for (String word : words) {
-        String[] chars = word.split(" ");  // Split each word by single space (letter separator)
+        String[] chars = word.split(" ");
         for (String morseChar : chars) {
             if (this.morseToCharMap.containsKey(morseChar)) {
                 result += this.morseToCharMap.get(morseChar);
             }
         }
-        result += " ";  // Add a space between words
+        result += " ";
     }
 
-    return result.trim();  // Remove trailing space
+    return result.trim();
 }
 
 }

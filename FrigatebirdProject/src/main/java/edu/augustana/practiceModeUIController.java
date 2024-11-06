@@ -13,7 +13,7 @@ public class practiceModeUIController extends Morse {
 
     @FXML
     public void backToHomeAction(ActionEvent event) throws IOException {
-        App.setRoot("HomePage");  // Go back to HomePage
+        App.setRoot("HomePage");
     }
 
 }
