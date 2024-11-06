@@ -16,21 +16,9 @@ public class Sound extends Morse  {
   this.volume = volume / 100.0; //Convert slider value (0-100) to range (0.0-1.0)
  }
 
- public void stop(){
-  isPlaying = false;
-  if (line != null && line.isOpen()) {
-   line.stop();
-   line.flush();
-   line.close();
-  }
-  if (playbackThread != null && playbackThread.isAlive()) {
-   playbackThread.interrupt();  // Interrupt the thread
-  }
- }
+
  // Method to play a tone at a specific frequency and duration
  private void playTone(double frequency, int durationMs) {
-  if(!isPlaying) return; //exit if stopped
-
   try {
    byte[] buffer = generateTone(frequency, durationMs);  // Generate tone data
 
@@ -63,11 +51,7 @@ public class Sound extends Morse  {
 
  // Play Morse symbols with tones
  public void playMorseSymbol(String morseCode) {
-  isPlaying = true; // reset isPlaying at the start
-  
-  playbackThread = new Thread(() -> {
-   for (char symbol : morseCode.toCharArray()) {
-    if (!isPlaying) break;  // Stop if the flag is set
+  for (char symbol : morseCode.toCharArray()) {
 
     if (symbol == '.') {
      playTone(600, 100);
@@ -84,8 +68,6 @@ public class Sound extends Morse  {
      break;
     }
    }
-  });
-  playbackThread.start();
  }
 
 }
