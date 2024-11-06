@@ -16,21 +16,8 @@ public class Sound extends Morse  {
   this.volume = volume / 100.0;
  }
 
- public void stop(){
-  isPlaying = false;
-  if (line != null && line.isOpen()) {
-   line.stop();
-   line.flush();
-   line.close();
-  }
-  if (playbackThread != null && playbackThread.isAlive()) {
-   playbackThread.interrupt();  // Interrupt the thread
-  }
- }
 
  private void playTone(double frequency, int durationMs) {
-  if(!isPlaying) return;
-
   try {
    byte[] buffer = generateTone(frequency, durationMs);  // Generate tone data
 
@@ -63,9 +50,6 @@ public class Sound extends Morse  {
 
 
  public void playMorseSymbol(String morseCode) {
-  isPlaying = true; // reset isPlaying at the start
-  
-  playbackThread = new Thread(() -> {
    for (char symbol : morseCode.toCharArray()) {
     if (!isPlaying) break;  // Stop if the flag is set
 
@@ -84,8 +68,6 @@ public class Sound extends Morse  {
      break;
     }
    }
-  });
-  playbackThread.start();
  }
 
 }
