@@ -23,8 +23,6 @@ public class HAMRadio {
         }
     }
 
-
-
     public double getFrequency() {
         return frequency;
     }

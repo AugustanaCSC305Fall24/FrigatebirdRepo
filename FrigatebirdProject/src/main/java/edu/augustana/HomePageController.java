@@ -14,5 +14,10 @@ public class HomePageController {
     private void switchToPracticeMode() throws IOException{
         App.setRoot("practiceMode");
     }
+
+    @FXML
+    private void switchToAISceneMode() throws IOException{
+        App.setRoot("AIScenarioAvalanche");
+    }
 }
 
