@@ -9,7 +9,6 @@
    <children>
       <Label text="Home Page" />
       <Button onAction="#switchToTuningView" text="Tune Radio" />
-      <Button mnemonicParsing="false" onAction="#switchToCWReceiver" text="CW" />
       <Button mnemonicParsing="false" onAction="#switchToPracticeMode" text="Practice Mode" />
    </children>
    <padding>

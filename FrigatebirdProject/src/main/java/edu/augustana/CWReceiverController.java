@@ -59,10 +59,6 @@ public class CWReceiverController {
         App.setRoot("HomePage");
     }
 
-    @FXML
-    void stopPlaying(ActionEvent event) {
-        soundPlayer.stop();
-    }
 
     public void handleMorseInput() {
         String input = morseInput.getText().trim();

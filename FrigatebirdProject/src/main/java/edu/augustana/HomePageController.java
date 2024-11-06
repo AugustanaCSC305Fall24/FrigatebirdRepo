@@ -11,10 +11,6 @@ public class HomePageController {
     }
 
     @FXML
-    private void switchToCWReceiver() throws IOException {
-        App.setRoot("CWReceiver");
-    }
-    @FXML
     private void switchToPracticeMode() throws IOException{
         App.setRoot("practiceMode");
     }
