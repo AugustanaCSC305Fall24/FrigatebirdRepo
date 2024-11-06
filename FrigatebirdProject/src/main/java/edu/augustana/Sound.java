@@ -53,23 +53,56 @@ public class Sound extends Morse  {
 
  // Play Morse symbols with tones
  public void playMorseSymbol(String morseCode) {
-  for (char symbol : morseCode.toCharArray()) {
+  final int DOT_DURATION = 100;
+  final int DASH_Duration = 3 * DOT_DURATION;
+  final long UNIT_MILLIS = (long) (UNIT_LENGTH * 1000);
 
-    if (symbol == '.') {
-     playTone(600, 100);
-    } else if (symbol == '-') {
-     playTone(600, 300);
-    }
+  for (int i = 0; i< morseCode.length(); i++){
+   char symbol = morseCode.charAt(i);
 
-    try {
-     if (isPlaying) {
-      Thread.sleep(100);  // Pause between symbols
-     }
-    } catch (InterruptedException e) {
-     Thread.currentThread().interrupt();
-     break;
-    }
+   if (symbol == '.'){
+    playTone(600, DOT_DURATION);
+   } else if (symbol == '-'){
+    playTone(600, DASH_Duration);
    }
+
+   try{
+    if ( i < morseCode.length() - 1){
+     char nextSymbol = morseCode.charAt(i + 1);
+
+     if(nextSymbol == ' '){
+      if(i + 2 < morseCode.length() && morseCode.charAt(i + 2) != ' '){
+       Thread.sleep(3* UNIT_MILLIS);
+      } else {
+       Thread.sleep(7 * UNIT_MILLIS);
+      }
+     } else {
+      Thread.sleep(UNIT_MILLIS);
+     }
+    }
+   } catch (InterruptedException e) {
+       Thread.currentThread().interrupt();
+       break;
+   }
+  }
+
+//  for (char symbol : morseCode.toCharArray()) {
+//
+//    if (symbol == '.') {
+//     playTone(600, 100);
+//    } else if (symbol == '-') {
+//     playTone(600, 300);
+//    }
+//
+//    try {
+//     if (isPlaying) {
+//      Thread.sleep(100);  // Pause between symbols
+//     }
+//    } catch (InterruptedException e) {
+//     Thread.currentThread().interrupt();
+//     break;
+//    }
+//   }
  }
 
 }
