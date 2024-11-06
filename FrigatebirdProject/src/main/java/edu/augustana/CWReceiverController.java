@@ -38,6 +38,7 @@ public class CWReceiverController {
     private String savedFilterMode;
     private double savedVolume;
 
+
     private static final double FREQUENCY_TOLERANCE = 100.0;  // Tolerance of ±100 MHz
 
     private Sound soundPlayer = new Sound();  // Sound instance

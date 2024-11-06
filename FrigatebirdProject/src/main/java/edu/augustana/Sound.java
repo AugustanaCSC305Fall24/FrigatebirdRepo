@@ -8,6 +8,8 @@ public class Sound extends Morse  {
  private static final int SAMPLE_RATE = 44100;  // Standard sample rate for audio
  private double volume = 1.0; //Volume (range 0.0 to 1.0)
  private volatile boolean isPlaying = true;
+ private static final double WPM = 18;  // Words per minute
+ private static final double UNIT_LENGTH = 60.0 / (WPM * 50);  // Unit length in seconds
 
  private SourceDataLine line;
  private Thread playbackThread;
