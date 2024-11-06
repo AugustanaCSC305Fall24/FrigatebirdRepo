@@ -13,8 +13,6 @@ public class App extends Application {
     private static Scene scene;
     public static HAMRadio radio = new HAMRadio();
 
-    private static TuneUIController tuneUIController;  
-
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("HomePage"), 640, 480);
@@ -25,22 +23,7 @@ public class App extends Application {
     static void setRoot(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         Parent root = loader.load();
-
-        if (fxml.equals("CWReceiver")) {
-            CWReceiverController receiverController = loader.getController();
-
-            receiverController.setSavedSettings(
-                    tuneUIController.getSavedFrequency(),
-                    tuneUIController.getSavedFilterMode(),
-                    tuneUIController.getSavedVolume()
-            );
-        }
-
         scene.setRoot(root);
-    }
-
-    public static void setTuneUIController(TuneUIController controller) {
-        tuneUIController = controller;
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

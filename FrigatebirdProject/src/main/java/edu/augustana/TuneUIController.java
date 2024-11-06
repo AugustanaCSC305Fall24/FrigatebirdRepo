@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class TuneUIController {
@@ -17,12 +19,6 @@ public class TuneUIController {
     private ComboBox<String> filterModeComboBox;
     @FXML
     private Slider volumeSlider;
-
-    private double savedFrequency;
-    private double savedVolume;
-    private String savedFilterMode;
-
-    private Sound sound = new Sound();
 
     @FXML
     public void initialize() {
@@ -52,48 +48,21 @@ public class TuneUIController {
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
-            sound.setVolume(volume);
             radio.setVolume(volume);
         });
     }
 
     @FXML
     void backToHomeAction(ActionEvent event) throws IOException {
-        App.setTuneUIController(this);
         App.setRoot("HomePage");
     }
 
     @FXML
-    public void saveSettings(ActionEvent event) {
-        savedFrequency = frequencySlider.getValue();
-        savedFilterMode = filterModeComboBox.getValue();
-        savedVolume = volumeSlider.getValue();
-
-        System.out.println("Settings Saved:");
-        System.out.println("Frequency: " + savedFrequency + " MHz");
-        System.out.println("Filter Mode: " + savedFilterMode);
-        System.out.println("Volume: " + savedVolume);
-    }
-
-    @FXML
     public void onNextButtonClick(ActionEvent event) throws IOException {
+        //Stage senderWindow = new Stage();
+        //senderWindow.setTitle("Fake sender");
 
-        saveSettings(event);
-
-
-        App.setTuneUIController(this);
         App.setRoot("CWReceiver");
     }
 
-    public double getSavedFrequency() {
-        return savedFrequency;
-    }
-
-    public String getSavedFilterMode() {
-        return savedFilterMode;
-    }
-
-    public double getSavedVolume() {
-        return savedVolume;
-    }
 }

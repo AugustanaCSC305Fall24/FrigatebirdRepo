@@ -34,24 +34,13 @@ public class CWReceiverController {
     private TextField morseInput;
 
 
-    private double savedFrequency;
-    private String savedFilterMode;
-    private double savedVolume;
-
     private static final double FREQUENCY_TOLERANCE = 100.0;
 
     private Sound soundPlayer = new Sound();  // Sound instance
 
+    @FXML private void initialize() {
+        frequencyInput.setText("" + App.radio.getFrequency());
 
-    public void setSavedSettings(double frequency, String filterMode, double volume) {
-        this.savedFrequency = frequency;
-        this.savedFilterMode = filterMode;
-        this.savedVolume = volume;
-
-        System.out.println("Received Settings:");
-        System.out.println("Frequency: " + frequency);
-        System.out.println("Filter Mode: " + filterMode);
-        System.out.println("Volume: " + volume);
     }
 
     @FXML
@@ -80,29 +69,22 @@ public class CWReceiverController {
         String message = messageInput.getText();
 
 
-        double enteredFrequency = Double.parseDouble(frequencyInput.getText());
+        double sendersFrequency = Double.parseDouble(frequencyInput.getText());
+        double receiversFrequency = App.radio.getFrequency();
 
-
-
-        if (Math.abs(enteredFrequency - savedFrequency) <= FREQUENCY_TOLERANCE) {
+        if (Math.abs(sendersFrequency - receiversFrequency) <= FREQUENCY_TOLERANCE) {
             Morse morseConverter = new Morse();
             String morseCode = morseConverter.toMorse(message);
 
             appendToChatBox("Message: " + message);
 
-        Label messageLabel = new Label("Message: " + message);
-        chatLogVBox.getChildren().add(messageLabel);
-
-
-        morsecodeMessage.setText(morseCode);
-
-
-        Sound soundPlayer = new Sound();
-        new Thread(() -> soundPlayer.playMorseSymbol(morseCode)).start();
-
+            Label messageLabel = new Label("Message: " + message);
+            chatLogVBox.getChildren().add(messageLabel);
 
             morsecodeMessage.setText(morseCode);
 
+            Sound soundPlayer = new Sound();
+            soundPlayer.setVolume(App.radio.getVolume());
 
             new Thread(() -> soundPlayer.playMorseSymbol(morseCode)).start();
 

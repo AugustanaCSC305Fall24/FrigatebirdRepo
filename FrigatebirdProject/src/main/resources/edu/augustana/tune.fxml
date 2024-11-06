@@ -34,7 +34,6 @@
             <Label text="Volume" />
             <Slider fx:id="volumeSlider" max="100" min="0" value="50" />
         </VBox>
-        <Button layoutX="190.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveSettings" text=" Save" />
         <Button layoutX="190.0" layoutY="300.0" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next" />
     </children>
 </AnchorPane>
