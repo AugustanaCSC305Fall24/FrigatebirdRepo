@@ -15,6 +15,9 @@ public class practiceModeUIController extends Morse{
     private Button backButton;
 
     @FXML
+    private Button refreshButton; //used for refreshing the symbols
+
+    @FXML
     private TextField letterDisplay;
 
     @FXML
