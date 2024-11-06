@@ -7,15 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
+
 public class App extends Application {
 
     private static Scene scene;
     public static HAMRadio radio = new HAMRadio();
 
-    private static TuneUIController tuneUIController;  // Store controller reference
+    private static TuneUIController tuneUIController;  
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -30,7 +28,7 @@ public class App extends Application {
 
         if (fxml.equals("CWReceiver")) {
             CWReceiverController receiverController = loader.getController();
-            // Pass saved settings to CWReceiverController
+
             receiverController.setSavedSettings(
                     tuneUIController.getSavedFrequency(),
                     tuneUIController.getSavedFilterMode(),
@@ -42,7 +40,7 @@ public class App extends Application {
     }
 
     public static void setTuneUIController(TuneUIController controller) {
-        tuneUIController = controller;  // Store reference for later use
+        tuneUIController = controller;
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

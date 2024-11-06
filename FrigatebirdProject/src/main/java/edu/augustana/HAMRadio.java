@@ -2,15 +2,15 @@ package edu.augustana;
 
 
 public class HAMRadio {
-    private double frequency; // Frequency in kHz
-    private String filterMode; // Bandpass, Low-pass, High-pass
-    private double volume; // Volume from 0 to 100
+    private double frequency;
+    private String filterMode;
+    private double volume;
 
 
     public HAMRadio() {
-        this.frequency = 15000; // Default frequency: 15 MHz
-        this.filterMode = "Bandpass"; // Default filter mode
-        this.volume = 50; // Default volume: 50%
+        this.frequency = 15000; // 15 MHz
+        this.filterMode = "Bandpass";
+        this.volume = 50;
     }
 
 

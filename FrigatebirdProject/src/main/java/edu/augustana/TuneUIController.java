@@ -52,15 +52,15 @@ public class TuneUIController {
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
-            sound.setVolume(volume); // updating the volume in sound instance
+            sound.setVolume(volume);
             radio.setVolume(volume);
         });
     }
 
     @FXML
     void backToHomeAction(ActionEvent event) throws IOException {
-        App.setTuneUIController(this);  // Store controller reference in App
-        App.setRoot("HomePage");  // Go back to HomePage
+        App.setTuneUIController(this);
+        App.setRoot("HomePage");
     }
 
     @FXML
@@ -77,12 +77,12 @@ public class TuneUIController {
 
     @FXML
     public void onNextButtonClick(ActionEvent event) throws IOException {
-        // Save the settings
+
         saveSettings(event);
 
-        // Navigate directly to CWReceiver
-        App.setTuneUIController(this);  // Store controller reference in App
-        App.setRoot("CWReceiver");  // Go directly to CWReceiver page
+
+        App.setTuneUIController(this);
+        App.setRoot("CWReceiver");
     }
 
     public double getSavedFrequency() {
