@@ -20,12 +20,16 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="142.0" layoutY="64.0" text="Enter the Morse Code for alphabets shown below:">
+      <Label layoutX="129.0" layoutY="65.0" text="Enter the Morse Code for alphabets/symbols shown below:">
          <font>
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
       </Label>
       <Label layoutX="307.0" layoutY="170.0" style="-fx-border-color: black;" text="Your Translation goes here:" />
-      <TextField fx:id="letterDisplay" editable="false" layoutX="55.0" layoutY="136.0" onAction="#displayLetterAndCheckMorse" prefHeight="171.0" prefWidth="206.0" style="-fx-border-color: blue;" />
+      <TextField fx:id="letterDisplay" alignment="CENTER" editable="false" layoutX="55.0" layoutY="136.0" onAction="#displayLetterAndCheckMorse" prefHeight="171.0" prefWidth="206.0" style="-fx-border-color: blue;">
+         <font>
+            <Font name="Arial Black" size="96.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

@@ -66,4 +66,8 @@ public class practiceModeUIController extends Morse{
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public void initialize(){
+        displayLetterAndCheckMorse();
+    }
 }
