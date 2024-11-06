@@ -2,6 +2,9 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -44,25 +47,32 @@ public class TuneUIController {
 
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
-        volumeSlider.setValue(radio.getVolume());
+        volumeSlider.setValue(radio.getVolume()*100.0);
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
-            radio.setVolume(volume);
+            radio.setVolume(volume/100.0);
         });
+
+        radio.getReceivingSoundPlayer().startStaticPlaying();
     }
 
     @FXML
     void backToHomeAction(ActionEvent event) throws IOException {
+        App.radio.getReceivingSoundPlayer().stopStaticPlaying();
         App.setRoot("HomePage");
     }
 
     @FXML
     public void onNextButtonClick(ActionEvent event) throws IOException {
-        //Stage senderWindow = new Stage();
-        //senderWindow.setTitle("Fake sender");
+        Stage senderWindow = new Stage();
+        senderWindow.setTitle("Fake sender");
 
-        App.setRoot("CWReceiver");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("CWSender.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene senderScene = new Scene(root, 600, 400);
+        senderWindow.setScene(senderScene);
+        senderWindow.show();
     }
 
 }

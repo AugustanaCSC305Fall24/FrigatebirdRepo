@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import edu.augustana.sound.SoundGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class CWReceiverController {
+public class CWSenderController {
 
     @FXML
     private TextField messageInput;
@@ -34,9 +35,6 @@ public class CWReceiverController {
     private TextField morseInput;
 
 
-    private static final double FREQUENCY_TOLERANCE = 100.0;
-
-    private Sound soundPlayer = new Sound();  // Sound instance
 
     @FXML private void initialize() {
         frequencyInput.setText("" + App.radio.getFrequency());
@@ -68,25 +66,18 @@ public class CWReceiverController {
     public void onTransmitButtonClick() {
         String message = messageInput.getText();
 
-
         double sendersFrequency = Double.parseDouble(frequencyInput.getText());
-        double receiversFrequency = App.radio.getFrequency();
 
-        if (Math.abs(sendersFrequency - receiversFrequency) <= FREQUENCY_TOLERANCE) {
-            Morse morseConverter = new Morse();
-            String morseCode = morseConverter.toMorse(message);
-
-            appendToChatBox("Message: " + message);
-
-            Label messageLabel = new Label("Message: " + message);
+        if (App.radio.canHear(sendersFrequency)) {
+            appendToChatBox("Message at " + sendersFrequency +": " + message);
+            Label messageLabel = new Label("Message at " + sendersFrequency +": " + message);
             chatLogVBox.getChildren().add(messageLabel);
 
+            Morse morseConverter = new Morse();
+            String morseCode = morseConverter.toMorse(message);
             morsecodeMessage.setText(morseCode);
 
-            Sound soundPlayer = new Sound();
-            soundPlayer.setVolume(App.radio.getVolume());
-
-            new Thread(() -> soundPlayer.playMorseSymbol(morseCode)).start();
+            App.radio.receiveMorseMessage(morseCode, sendersFrequency);
 
             System.out.println("Message transmitted: " + message);
         } else {

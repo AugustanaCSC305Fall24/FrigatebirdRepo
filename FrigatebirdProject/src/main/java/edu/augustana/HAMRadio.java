@@ -1,16 +1,21 @@
 package edu.augustana;
 
 
+import edu.augustana.sound.SoundGenerator;
+
 public class HAMRadio {
     private double frequency;
     private String filterMode;
     private double volume;
+    private SoundGenerator receivingSoundPlayer;
 
+    private static final double FREQUENCY_TOLERANCE = 100.0;
 
     public HAMRadio() {
         this.frequency = 15000; // 15 MHz
         this.filterMode = "Bandpass";
-        this.volume = 50;
+        this.volume = 0.50;
+        this.receivingSoundPlayer = new SoundGenerator();
     }
 
 
@@ -43,18 +48,37 @@ public class HAMRadio {
     }
 
 
+    /**
+     *
+     * @param volume (min of 0, max of 1.0)
+     */
     public void setVolume(double volume) {
-        if (volume >= 0 && volume <= 100) {
+        if (volume >= 0 && volume <= 1) {
             this.volume = volume;
+            this.receivingSoundPlayer.setVolume(volume);
             System.out.println("Volume set to: " + volume);
         } else {
-            System.out.println("Error: Volume out of range.");
+            throw new IllegalArgumentException("Error: Volume out of range.");
         }
     }
 
-
+    /**
+     *
+     * @return volume (between 0.0 and 1.0)
+     */
     public double getVolume() {
         return volume;
+    }
+
+    public boolean canHear(double sendersFrequency) {
+        return (Math.abs(sendersFrequency - frequency) <= FREQUENCY_TOLERANCE);
+    }
+    public void receiveMorseMessage(String morseCode, double freq) {
+        new Thread(() -> receivingSoundPlayer.playMorseSymbol(morseCode)).start();
+    }
+
+    public SoundGenerator getReceivingSoundPlayer() {
+        return receivingSoundPlayer;
     }
 
     @Override
@@ -65,4 +89,5 @@ public class HAMRadio {
                 ", volume=" + volume +
                 '}';
     }
+
 }

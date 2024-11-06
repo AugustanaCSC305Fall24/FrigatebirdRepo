@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="chatLogBox" prefHeight="506.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CWReceiverController">
+<AnchorPane fx:id="chatLogBox" prefHeight="506.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CWSenderController">
    <children>
       <Label layoutX="74.0" layoutY="37.0" prefHeight="17.0" prefWidth="98.0" text="Enter Message" />
       <TextField fx:id="messageInput" layoutX="22.0" layoutY="60.0" prefHeight="51.0" prefWidth="214.0" />
