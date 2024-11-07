@@ -19,16 +19,7 @@
             <Label fx:id="frequencyLabel" text="15.00 MHz" />
 
             <!-- Filter Mode Controls -->
-            <Label text="Filter Mode" />
-            <ComboBox fx:id="filterModeComboBox">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Bandpass" />
-                        <String fx:value="Low-pass" />
-                        <String fx:value="High-pass" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
+
 
             <!-- Volume Controls -->
             <Label text="Volume" />
