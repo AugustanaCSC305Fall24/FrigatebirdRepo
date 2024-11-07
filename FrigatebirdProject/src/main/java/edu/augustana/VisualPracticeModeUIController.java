@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class practiceModeUIController extends Morse{
+public class VisualPracticeModeUIController extends Morse{
 
     @FXML
     private Button backButton;
@@ -26,8 +26,8 @@ public class practiceModeUIController extends Morse{
     private char currentLetter;
 
     @FXML
-    public void backToHomeAction(ActionEvent event) throws IOException {
-        App.setRoot("HomePage");
+    public void backToPractiseModeAction(ActionEvent event) throws IOException {
+        App.setRoot("PractiseOption");
     }
     // Method to display a random letter and check Morse code input
     @FXML

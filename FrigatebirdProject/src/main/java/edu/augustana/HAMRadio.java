@@ -1,23 +1,21 @@
 package edu.augustana;
 
-
 import edu.augustana.sound.SoundGenerator;
 
 public class HAMRadio {
     private double frequency;
-    private String filterMode;
     private double volume;
+    private int filterLevel; // Filter level to control noise
     private SoundGenerator receivingSoundPlayer;
 
     private static final double FREQUENCY_TOLERANCE = 100.0;
 
     public HAMRadio() {
         this.frequency = 15000; // 15 MHz
-        this.filterMode = "Bandpass";
         this.volume = 0.50;
+        this.filterLevel = 50; // Default filter level
         this.receivingSoundPlayer = new SoundGenerator();
     }
-
 
     public void setFrequency(double frequency) {
         if (frequency >= 7000 && frequency <= 7067) {
@@ -32,26 +30,19 @@ public class HAMRadio {
         return frequency;
     }
 
-
-    public void setFilterMode(String filterMode) {
-        if (filterMode.equals("Bandpass") || filterMode.equals("Low-pass") || filterMode.equals("High-pass")) {
-            this.filterMode = filterMode;
-            System.out.println("Filter mode set to: " + filterMode);
+    public void setFilterLevel(int filterLevel) {
+        if (filterLevel >= 0 && filterLevel <= 100) {
+            this.filterLevel = filterLevel;
+            System.out.println("Filter level set to: " + filterLevel);
         } else {
-            System.out.println("Error: Invalid filter mode.");
+            System.out.println("Error: Filter level out of range.");
         }
     }
 
-
-    public String getFilterMode() {
-        return filterMode;
+    public int getFilterLevel() {
+        return filterLevel;
     }
 
-
-    /**
-     *
-     * @param volume (min of 0, max of 1.0)
-     */
     public void setVolume(double volume) {
         if (volume >= 0 && volume <= 1) {
             this.volume = volume;
@@ -62,10 +53,6 @@ public class HAMRadio {
         }
     }
 
-    /**
-     *
-     * @return volume (between 0.0 and 1.0)
-     */
     public double getVolume() {
         return volume;
     }
@@ -73,6 +60,7 @@ public class HAMRadio {
     public boolean canHear(double sendersFrequency) {
         return (Math.abs(sendersFrequency - frequency) <= FREQUENCY_TOLERANCE);
     }
+
     public void receiveMorseMessage(String morseCode, double freq) {
         new Thread(() -> receivingSoundPlayer.playMorseSymbol(morseCode)).start();
     }
@@ -85,9 +73,8 @@ public class HAMRadio {
     public String toString() {
         return "HAMRadio{" +
                 "frequency=" + frequency +
-                ", filterMode='" + filterMode + '\'' +
                 ", volume=" + volume +
+                ", filterLevel=" + filterLevel +
                 '}';
     }
-
 }

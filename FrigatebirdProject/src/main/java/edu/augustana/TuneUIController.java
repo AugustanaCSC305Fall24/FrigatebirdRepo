@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
@@ -19,9 +18,11 @@ public class TuneUIController {
     @FXML
     private Label frequencyLabel;
     @FXML
-    private ComboBox<String> filterModeComboBox;
-    @FXML
     private Slider volumeSlider;
+    @FXML
+    private Slider filterSlider;
+    @FXML
+    private Label filterLabel;
 
     @FXML
     public void initialize() {
@@ -46,6 +47,16 @@ public class TuneUIController {
             radio.setVolume(volume / 100.0);
         });
 
+        filterSlider.setMin(0);
+        filterSlider.setMax(100);
+        filterSlider.setValue(50);
+
+        filterSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            int filterValue = newVal.intValue();
+            filterLabel.setText(String.valueOf(filterValue));
+            radio.setFilterLevel(filterValue);
+        });
+
         radio.getReceivingSoundPlayer().startStaticPlaying();
     }
 
@@ -57,6 +68,10 @@ public class TuneUIController {
 
     @FXML
     public void onNextButtonClick(ActionEvent event) throws IOException {
+        System.out.println("Volume set to: " + App.radio.getVolume());
+        System.out.println("Frequency set to: " + (App.radio.getFrequency() / 1000) + " MHz");
+        System.out.println("Filter level set to: " + App.radio.getFilterLevel());
+
         Stage senderWindow = new Stage();
         senderWindow.setTitle("Fake sender");
 

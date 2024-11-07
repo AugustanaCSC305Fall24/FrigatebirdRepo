@@ -46,11 +46,6 @@ public class CWSenderController {
 
     }
 
-    @FXML
-    public void backToHomeAction(ActionEvent event) throws IOException {
-        App.setRoot("HomePage");
-    }
-
 
     public void handleMorseInput(KeyEvent evt) {
         // could check System current time millis to see how
@@ -83,8 +78,8 @@ public class CWSenderController {
         double sendersFrequency = Double.parseDouble(frequencyInput.getText());
 
         if (App.radio.canHear(sendersFrequency)) {
-            appendToChatBox("Message at " + sendersFrequency +": " + message);
-            Label messageLabel = new Label("Message at " + sendersFrequency +": " + message);
+            appendToChatBox("User: " + message);
+            Label messageLabel = new Label("User: " + message);
             chatLogVBox.getChildren().add(messageLabel);
 
             Morse morseConverter = new Morse();
