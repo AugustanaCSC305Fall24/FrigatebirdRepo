@@ -11,4 +11,5 @@ public class AIScenarioAvalanche {
         App.setRoot("HomePage");
     }
 
+
 }
