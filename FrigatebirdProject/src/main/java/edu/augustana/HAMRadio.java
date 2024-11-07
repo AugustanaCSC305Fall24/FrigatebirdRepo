@@ -5,15 +5,15 @@ import edu.augustana.sound.SoundGenerator;
 public class HAMRadio {
     private double frequency;
     private double volume;
-    private int filterLevel;
+    private int filterLevel; // Filter level to control noise
     private SoundGenerator receivingSoundPlayer;
 
     private static final double FREQUENCY_TOLERANCE = 100.0;
 
     public HAMRadio() {
-        this.frequency = 15000;
+        this.frequency = 7067; // 15 MHz
         this.volume = 0.50;
-        this.filterLevel = 50;
+        this.filterLevel = 50; // Default filter level
         this.receivingSoundPlayer = new SoundGenerator();
     }
 
