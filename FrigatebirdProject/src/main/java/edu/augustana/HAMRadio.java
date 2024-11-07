@@ -11,7 +11,7 @@ public class HAMRadio {
     private static final double FREQUENCY_TOLERANCE = 100.0;
 
     public HAMRadio() {
-        this.frequency = 15000; // 15 MHz
+        this.frequency = 15000;
         this.volume = 0.50;
         this.filterLevel = 50;
         this.receivingSoundPlayer = new SoundGenerator();

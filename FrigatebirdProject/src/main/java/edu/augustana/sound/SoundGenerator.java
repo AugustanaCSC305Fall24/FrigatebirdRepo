@@ -10,8 +10,8 @@ public class SoundGenerator {
     private static final int SAMPLE_RATE = 44100;
     private double volume = 1.0; // Volume (range 0.0 to 1.0)
     private volatile boolean isPlaying = true;
-    private static final double WPM = 18;  // Words per minute
-    private static final double UNIT_LENGTH = 60.0 / (WPM * 50);  // Unit length in seconds
+    private static final double WPM = 18;
+    private static final double UNIT_LENGTH = 60.0 / (WPM * 50);
 
     private SourceDataLine line;
     private Thread playbackThread;
@@ -25,7 +25,6 @@ public class SoundGenerator {
         return volume;
     }
 
-    // Method to play a tone at a specific frequency and duration, adjusting for pitch based on deviation
     private void playTone(double baseFrequency, int durationMs, double deviation) {
         try {
             double adjustedFrequency = baseFrequency * (1 - (deviation / 1000)); // Adjust frequency based on deviation

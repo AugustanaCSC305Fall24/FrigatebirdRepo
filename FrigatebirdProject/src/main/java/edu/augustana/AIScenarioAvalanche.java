@@ -67,13 +67,24 @@ public class AIScenarioAvalanche extends CWSenderController{
 
     public void translateMorseInput() {
 
-        String morseText = morseCodeBuilder.toString();
+        String morseText = morseCodeBuilder.toString().trim();
+
+
+        if (morseText.isEmpty()) {
+            chatLog.appendText("\n[Error] No Morse code to translate.\n");
+            return;
+        }
+
         Morse morseConverter = new Morse();
         String englishMessage = morseConverter.toEnglish(morseText);
 
 
-        chatLog.appendText("\n " + englishMessage + "\n");
+        if (englishMessage == null || englishMessage.isEmpty()) {
+            chatLog.appendText("\n[Error] Invalid or untranslatable Morse code.\n");
+        } else {
 
+            chatLog.appendText("\nTranslated Message: " + englishMessage + "\n");
+        }
 
         morseCodeBuilder.setLength(0);
     }

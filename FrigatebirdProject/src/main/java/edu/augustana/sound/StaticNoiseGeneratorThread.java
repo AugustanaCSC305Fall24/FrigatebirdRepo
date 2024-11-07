@@ -14,7 +14,7 @@ class StaticNoiseGeneratorThread extends Thread {
     final static public int SAMPLE_SIZE = 2;
     final static public int PACKET_SIZE = 5000;
     private final HAMRadio radio;
-    private volatile double volumeScale = 0.5; // Default value for the filter volume
+    private volatile double volumeScale = 0.5;
 
     SourceDataLine line;
     public boolean exitExecution = false;
