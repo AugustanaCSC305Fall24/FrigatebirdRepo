@@ -7,6 +7,4 @@ module edu.augustana {
     exports edu.augustana;
     exports edu.augustana.sound;
     opens edu.augustana.sound to javafx.fxml;
-    exports edu.augustana.practiceMode;
-    opens edu.augustana.practiceMode to javafx.fxml;
 }

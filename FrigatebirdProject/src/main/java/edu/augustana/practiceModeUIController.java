@@ -1,7 +1,5 @@
-package edu.augustana.practiceMode;
+package edu.augustana;
 
-import edu.augustana.App;
-import edu.augustana.Morse;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class practiceModeUIController extends Morse {
+public class practiceModeUIController extends Morse{
 
     @FXML
     private Button backButton;
