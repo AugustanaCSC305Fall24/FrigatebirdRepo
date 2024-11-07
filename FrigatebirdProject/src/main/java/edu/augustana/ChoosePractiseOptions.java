@@ -25,6 +25,11 @@ public class ChoosePractiseOptions {
     }
 
     @FXML
+    void backToHomeAction() throws IOException{
+        App.setRoot("HomePage");
+    }
+
+    @FXML
     void initialize() {
 
     }
