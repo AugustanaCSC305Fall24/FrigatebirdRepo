@@ -107,8 +107,8 @@ public class                                                                    
         Random random = new Random();
 
         // Generate a random index and select a message
-        int randomIndex = random.nextInt(messageSender.getLength());
-        String selectedMessage = messages.get(randomIndex);
+            int randomIndex = random.nextInt(messages.size());
+            String selectedMessage = messages.get(randomIndex);
 
 
         // Display the message in English in chatLog
