@@ -19,11 +19,11 @@ public class AIScenarioAvalanche extends CWSenderController{
     private TextField messageSender;
 
 
-    private StringBuilder morseCodeBuilder = new StringBuilder(); // To accumulate Morse code
+    private StringBuilder morseCodeBuilder = new StringBuilder();
     private long lastInputTime = System.currentTimeMillis();
     @FXML
     private void initialize() {
-        messageSender.setOnKeyPressed(this::handleMorseInput);  // Use handleMorseInput for real-time Morse input
+        messageSender.setOnKeyPressed(this::handleMorseInput);
         showAlert("Help!", "Help, there has been an Avalanche on a nearby mountain. We are stuck");
     }
 
@@ -46,35 +46,35 @@ public class AIScenarioAvalanche extends CWSenderController{
         String morseSymbol = "";
         if (currentTime - lastInputTime > 1000) {
             morseCodeBuilder.append(" ");
-            chatLog.appendText(" "); // Add a space to chatLog for visual feedback
+            chatLog.appendText(" ");
         }
 
         if (input.equals(KeyCode.DIGIT1)) {
             morseSymbol = ".";
-            morseCodeBuilder.append(morseSymbol);   // Append to the accumulated Morse code
-            chatLog.appendText(morseSymbol);        // Display in real-time in chatLog
+            morseCodeBuilder.append(morseSymbol);
+            chatLog.appendText(morseSymbol);
         } else if (input.equals(KeyCode.DIGIT2)) {
             morseSymbol = "-";
-            morseCodeBuilder.append(morseSymbol);   // Append to the accumulated Morse code
-            chatLog.appendText(morseSymbol);        // Display in real-time in chatLog
+            morseCodeBuilder.append(morseSymbol);
+            chatLog.appendText(morseSymbol);
         } else {
             System.out.println("Invalid input: Only '1' for dot and '2' for dash are allowed.");
         }
         lastInputTime = currentTime;
-        // Clear input field for the next character
+
         messageSender.clear();
     }
 
     public void translateMorseInput() {
-        // Convert the accumulated Morse code to English
+
         String morseText = morseCodeBuilder.toString();
         Morse morseConverter = new Morse();
         String englishMessage = morseConverter.toEnglish(morseText);
 
-        // Display the translated English message in the chatLog
+
         chatLog.appendText("\n " + englishMessage + "\n");
 
-        // Clear the Morse code builder for new input
+
         morseCodeBuilder.setLength(0);
     }
 
