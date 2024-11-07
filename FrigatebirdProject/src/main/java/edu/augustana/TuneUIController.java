@@ -29,23 +29,21 @@ public class TuneUIController {
 
         frequencySlider.setMin(7.00);
         frequencySlider.setMax(7.067);
-        frequencySlider.setValue(radio.getFrequency()/1000);
+        frequencySlider.setValue(radio.getFrequency() / 1000);
 
         frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double frequency = newVal.doubleValue();
-            frequencyLabel.setText(String.format("%.3f MHz", frequency / 1000));
-            radio.setFrequency(frequency*1000);
+            frequencyLabel.setText(String.format("%.3f MHz", frequency));
+            radio.setFrequency(frequency * 1000);
         });
-
-
 
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
-        volumeSlider.setValue(radio.getVolume()*100.0);
+        volumeSlider.setValue(radio.getVolume() * 100.0);
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
-            radio.setVolume(volume/100.0);
+            radio.setVolume(volume / 100.0);
         });
 
         radio.getReceivingSoundPlayer().startStaticPlaying();
@@ -68,5 +66,4 @@ public class TuneUIController {
         senderWindow.setScene(senderScene);
         senderWindow.show();
     }
-
 }
