@@ -77,8 +77,8 @@ public class CWSenderController {
         double sendersFrequency = Double.parseDouble(frequencyInput.getText());
 
         if (App.radio.canHear(sendersFrequency)) {
-            appendToChatBox("Message at " + sendersFrequency +": " + message);
-            Label messageLabel = new Label("Message at " + sendersFrequency +": " + message);
+            appendToChatBox("User: " + message);
+            Label messageLabel = new Label("User: " + message);
             chatLogVBox.getChildren().add(messageLabel);
 
             Morse morseConverter = new Morse();
