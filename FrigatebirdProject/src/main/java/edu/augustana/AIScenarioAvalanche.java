@@ -10,6 +10,9 @@ import javafx.scene.input.KeyEvent;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class AIScenarioAvalanche extends CWSenderController{
 
@@ -34,6 +37,10 @@ public class AIScenarioAvalanche extends CWSenderController{
     @FXML
     private void backToHomeAction() throws IOException {
         App.setRoot("HomePage");
+    }
+    @FXML
+    private void onReceiveButtonClick() {
+        sendRandomMorseMessage();
     }
 
     private void showAlert(String title, String message) {
@@ -94,5 +101,43 @@ public class AIScenarioAvalanche extends CWSenderController{
 
         morseCodeBuilder.setLength(0);
     }
+        public void sendRandomMorseMessage() {
+        // List of possible messages
+        ArrayList<String> messages = new ArrayList<>(Arrays.asList("We need water","We are stuck","Send Helicopter"));
+        Random random = new Random();
+
+        // Generate a random index and select a message
+        int randomIndex = random.nextInt(messageSender.getLength());
+        String selectedMessage = messages.get(randomIndex);
+
+
+        // Display the message in English in chatLog
+        chatLog.appendText("User: " + selectedMessage + "\n");
+
+        // Convert the selected message to Morse code
+        Morse morseConverter = new Morse();
+        String morseTranslation = morseConverter.toMorse(selectedMessage);
+
+        // Display Morse code in chatLog
+        chatLog.appendText("Morse: " + morseTranslation + "\n");
+
+        // Play sound for each symbol in Morse code
+        for (char symbol : morseTranslation.toCharArray()) {
+            if (symbol == '.') {
+                SoundforMorse.playTone(600, 100, 0); // Dot sound
+            } else if (symbol == '-') {
+                SoundforMorse.playTone(600, 300, 0); // Dash sound
+            } else if (symbol == ' ') {
+                try {
+                    Thread.sleep(300); // Delay for space between words
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        chatLog.appendText("\n");
+    }
+
 
 }

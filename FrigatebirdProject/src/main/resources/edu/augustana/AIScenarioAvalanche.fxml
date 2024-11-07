@@ -9,18 +9,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AIScenarioAvalanche">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeAction" text="BACK" style="-fx-background-color: #4682b4; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" />
-      <TextArea fx:id="chatLog" editable="false" layoutX="65.0" layoutY="53.0" prefHeight="327.0" prefWidth="491.0" style="-fx-background-color: #ffffff; -fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 5;">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeAction" style="-fx-background-color: #4682b4; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="BACK" />
+      <TextArea fx:id="chatLog" editable="false" layoutX="66.0" layoutY="49.0" prefHeight="327.0" prefWidth="491.0" style="-fx-background-color: #ffffff; -fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 5;">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </TextArea>
-      <TextField fx:id="messageSender" layoutX="87.0" layoutY="321.0" prefHeight="45.0" prefWidth="448.0" promptText="Enter message" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 5;">
+      <TextField fx:id="messageSender" layoutX="88.0" layoutY="388.0" prefHeight="45.0" prefWidth="448.0" promptText="Enter message" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 5;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
       <!-- Add the Translate Button -->
-      <Button layoutX="455.0" layoutY="375.0" mnemonicParsing="false" onAction="#translateMorseInput" text="Translate" style="-fx-background-color: #ffcc00; -fx-text-fill: black; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <Button layoutX="455.0" layoutY="375.0" mnemonicParsing="false" onAction="#translateMorseInput" style="-fx-background-color: #ffcc00; -fx-text-fill: black; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="Translate" />
+      <Button layoutX="234.0" layoutY="14.0" mnemonicParsing="false" onAction="#sendRandomMorseMessage" text="RECIEVE MSG" />
    </children>
 </AnchorPane>
