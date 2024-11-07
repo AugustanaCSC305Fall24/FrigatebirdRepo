@@ -26,7 +26,7 @@ public class SoundGenerator {
     }
 
     // Method to play a tone at a specific frequency and duration, adjusting for pitch based on deviation
-    private void playTone(double baseFrequency, int durationMs, double deviation) {
+    public void playTone(double baseFrequency, int durationMs, double deviation) {
         try {
             double adjustedFrequency = baseFrequency * (1 - (deviation / 1000)); // Adjust frequency based on deviation
             byte[] buffer = generateTone(adjustedFrequency, durationMs, deviation); // Generate adjusted tone data
@@ -45,7 +45,7 @@ public class SoundGenerator {
     }
 
     // Method to generate the raw tone data, including distortion based on the deviation
-    private byte[] generateTone(double frequency, int durationMs, double deviation) {
+    public byte[] generateTone(double frequency, int durationMs, double deviation) {
         int length = (int) (SAMPLE_RATE * (durationMs / 1000.0));
         byte[] buffer = new byte[length];
         double distortionFactor = Math.min(1.0, deviation / 100.0); // Ensure distortion factor does not exceed 1.0
