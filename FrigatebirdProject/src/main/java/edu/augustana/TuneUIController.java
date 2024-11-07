@@ -22,6 +22,10 @@ public class TuneUIController {
     private ComboBox<String> filterModeComboBox;
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private Slider filterSlider;
+    @FXML
+    private Label filterLabel;
 
     @FXML
     public void initialize() {
@@ -44,6 +48,15 @@ public class TuneUIController {
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
             radio.setVolume(volume / 100.0);
+        });
+
+        filterSlider.setMin(0);
+        filterSlider.setMax(100);
+        filterSlider.setValue(50);
+
+        filterSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            int filterValue = newVal.intValue();
+            filterLabel.setText(String.valueOf(filterValue));
         });
 
         radio.getReceivingSoundPlayer().startStaticPlaying();

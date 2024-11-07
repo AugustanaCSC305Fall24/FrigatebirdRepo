@@ -12,7 +12,7 @@ public class HomePageController {
 
     @FXML
     private void switchToPracticeMode() throws IOException{
-        App.setRoot("PractiseOption");
+        App.setRoot("practiceMode");
     }
 
     @FXML
