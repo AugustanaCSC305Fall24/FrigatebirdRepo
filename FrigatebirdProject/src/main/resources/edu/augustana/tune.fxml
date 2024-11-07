@@ -6,20 +6,23 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TuneUIController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TuneUIController">
     <children>
-        <Button mnemonicParsing="false" onAction="#backToHomeAction" text="Back" />
-        <VBox alignment="CENTER" layoutX="50" layoutY="50" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" spacing="10">
-            <Label text="Frequency (MHz)" />
-            <Slider fx:id="frequencySlider" max="7.067" min="7.000" value="7.000" />
-            <Label fx:id="frequencyLabel" text="7.000 MHz" />
-            <Label text="Volume" />
-            <Slider fx:id="volumeSlider" max="100" min="0" value="50" />
-            <Label text="Filter Control" />
-            <Slider fx:id="filterSlider" max="100" min="0" value="50" />
-            <Label fx:id="filterLabel" text="50" />
+        <Button mnemonicParsing="false" onAction="#backToHomeAction" text="Back" style="-fx-background-color: #4682b4; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" />
+        <VBox alignment="CENTER" layoutX="50" layoutY="50" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" spacing="15" style="-fx-background-color: #ffffff; -fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 10; -fx-padding: 20;">
+            <Label text="Frequency (MHz)" style="-fx-font-size: 16px; -fx-text-fill: #333333;" />
+            <Slider fx:id="frequencySlider" max="7.067" min="7.000" value="7.000" style="-fx-control-inner-background: #87cefa;" />
+            <Label fx:id="frequencyLabel" text="7.000 MHz" style="-fx-font-size: 14px; -fx-text-fill: #4682b4;" />
+
+            <Label text="Volume" style="-fx-font-size: 16px; -fx-text-fill: #333333;" />
+            <Slider fx:id="volumeSlider" max="100" min="0" value="50" style="-fx-control-inner-background: #87cefa;" />
+
+            <Label text="Filter Control" style="-fx-font-size: 16px; -fx-text-fill: #333333;" />
+            <Slider fx:id="filterSlider" max="100" min="0" value="50" style="-fx-control-inner-background: #87cefa;" />
+            <Label fx:id="filterLabel" text="50" style="-fx-font-size: 14px; -fx-text-fill: #4682b4;" />
         </VBox>
-        <Button layoutX="190.0" layoutY="380.0" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next" />
+        <Button layoutX="190.0" layoutY="380.0" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next" style="-fx-background-color: #4682b4; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" />
     </children>
 </AnchorPane>
