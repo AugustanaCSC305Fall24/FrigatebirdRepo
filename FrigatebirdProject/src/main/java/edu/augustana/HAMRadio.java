@@ -20,9 +20,9 @@ public class HAMRadio {
 
 
     public void setFrequency(double frequency) {
-        if (frequency >= 0 && frequency <= 30000) {
+        if (frequency >= 7000 && frequency <= 7067) {
             this.frequency = frequency;
-            System.out.println("Frequency set to: " + frequency + " kHz");
+            System.out.println("Frequency set to: " + (frequency / 1000) + " MHz");
         } else {
             System.out.println("Error: Frequency out of range.");
         }

@@ -27,14 +27,14 @@ public class TuneUIController {
     public void initialize() {
         HAMRadio radio = App.radio;
 
-        frequencySlider.setMin(0);
-        frequencySlider.setMax(30000);
-        frequencySlider.setValue(radio.getFrequency());
+        frequencySlider.setMin(7.00);
+        frequencySlider.setMax(7.067);
+        frequencySlider.setValue(radio.getFrequency()/1000);
 
         frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double frequency = newVal.doubleValue();
-            frequencyLabel.setText(String.format("%.2f MHz", frequency / 1000));
-            radio.setFrequency(frequency);
+            frequencyLabel.setText(String.format("%.3f MHz", frequency / 1000));
+            radio.setFrequency(frequency*1000);
         });
 
         filterModeComboBox.getItems().addAll("Bandpass", "Low-pass", "High-pass");

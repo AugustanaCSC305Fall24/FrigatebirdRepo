@@ -9,7 +9,7 @@ import java.util.Random;
 
 // courtesy of https://gist.github.com/m5mat/f622df23a49586337009c60a9966964c
 
-class StaticNoiseGeneratorThread extends Thread {
+class   StaticNoiseGeneratorThread extends Thread {
     private static StaticNoiseGeneratorThread generatorThread;
 
     final static public int SAMPLE_SIZE = 2;
