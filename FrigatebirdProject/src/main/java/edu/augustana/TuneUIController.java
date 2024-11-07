@@ -37,13 +37,7 @@ public class TuneUIController {
             radio.setFrequency(frequency*1000);
         });
 
-        filterModeComboBox.getItems().addAll("Bandpass", "Low-pass", "High-pass");
-        filterModeComboBox.setValue(radio.getFilterMode());
 
-        filterModeComboBox.setOnAction(event -> {
-            String filterMode = filterModeComboBox.getValue();
-            radio.setFilterMode(filterMode);
-        });
 
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
