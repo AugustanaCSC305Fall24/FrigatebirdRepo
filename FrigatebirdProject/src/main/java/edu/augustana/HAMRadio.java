@@ -61,8 +61,13 @@ public class HAMRadio {
         return (Math.abs(sendersFrequency - frequency) <= FREQUENCY_TOLERANCE);
     }
 
+    public double calculateFrequencyDeviation(double sendersFrequency) {
+        return Math.abs(this.frequency - sendersFrequency);
+    }
+
     public void receiveMorseMessage(String morseCode, double freq) {
-        new Thread(() -> receivingSoundPlayer.playMorseSymbol(morseCode)).start();
+        double deviation = calculateFrequencyDeviation(freq);
+        new Thread(() -> receivingSoundPlayer.playMorseSymbol(morseCode, deviation)).start();
     }
 
     public SoundGenerator getReceivingSoundPlayer() {

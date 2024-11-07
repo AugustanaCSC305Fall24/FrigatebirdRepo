@@ -25,18 +25,17 @@ public class SoundGenerator {
         return volume;
     }
 
-    // Method to play a tone at a specific frequency and duration
-    private void playTone(double frequency, int durationMs) {
+    // Method to play a tone at a specific frequency and duration, adjusting for pitch based on deviation
+    private void playTone(double baseFrequency, int durationMs, double deviation) {
         try {
-            byte[] buffer = generateTone(frequency, durationMs);  // Generate tone data
+            double adjustedFrequency = baseFrequency * (1 - (deviation / 1000)); // Adjust frequency based on deviation
+            byte[] buffer = generateTone(adjustedFrequency, durationMs, deviation); // Generate adjusted tone data
 
-            // Prepare audio format and line for playback
             AudioFormat format = new AudioFormat(SAMPLE_RATE, 8, 1, true, false);
             SourceDataLine line = AudioSystem.getSourceDataLine(format);
             line.open(format);
             line.start();
 
-            // Write the generated tone data to the audio line
             line.write(buffer, 0, buffer.length);
             line.drain();
             line.close();
@@ -45,20 +44,27 @@ public class SoundGenerator {
         }
     }
 
-    // Method to generate the raw tone data
-    private byte[] generateTone(double frequency, int durationMs) {
+    // Method to generate the raw tone data, including distortion based on the deviation
+    private byte[] generateTone(double frequency, int durationMs, double deviation) {
         int length = (int) (SAMPLE_RATE * (durationMs / 1000.0));
         byte[] buffer = new byte[length];
+        double distortionFactor = Math.min(1.0, deviation / 100.0); // Ensure distortion factor does not exceed 1.0
 
         for (int i = 0; i < length; i++) {
             double angle = 2.0 * Math.PI * i * frequency / SAMPLE_RATE;
-            buffer[i] = (byte) (Math.sin(angle) * Byte.MAX_VALUE * volume);  // Generate sine wave
+            double baseWave = Math.sin(angle) * Byte.MAX_VALUE * volume;
+
+            // Add distortion based on the deviation
+            double noise = Math.random() * 2 - 1; // Random value between -1 and 1
+            baseWave = baseWave * (1 - distortionFactor) + noise * Byte.MAX_VALUE * volume * distortionFactor;
+
+            buffer[i] = (byte) baseWave;
         }
         return buffer;
     }
 
-    // Play Morse symbols with tones
-    public void playMorseSymbol(String morseCode) {
+    // Play Morse symbols with tones, adjusting the pitch based on the frequency deviation
+    public void playMorseSymbol(String morseCode, double deviation) {
         final int DOT_DURATION = 100;
         final int DASH_DURATION = 3 * DOT_DURATION;
         final long UNIT_MILLIS = (long) (UNIT_LENGTH * 1000);
@@ -67,15 +73,14 @@ public class SoundGenerator {
             char symbol = morseCode.charAt(i);
 
             if (symbol == '.') {
-                playTone(600, DOT_DURATION);
+                playTone(600, DOT_DURATION, deviation); // Pass deviation to adjust pitch and clarity
             } else if (symbol == '-') {
-                playTone(600, DASH_DURATION);
+                playTone(600, DASH_DURATION, deviation);
             }
 
             try {
                 if (i < morseCode.length() - 1) {
                     char nextSymbol = morseCode.charAt(i + 1);
-
                     if (nextSymbol == ' ') {
                         if (i + 2 < morseCode.length() && morseCode.charAt(i + 2) != ' ') {
                             Thread.sleep(3 * UNIT_MILLIS);

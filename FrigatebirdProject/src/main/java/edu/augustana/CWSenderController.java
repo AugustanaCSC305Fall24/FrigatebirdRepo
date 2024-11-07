@@ -48,28 +48,27 @@ public class CWSenderController {
 
 
     public void handleMorseInput(KeyEvent evt) {
-        // could check System current time millis to see how
-        // much time has passed since the last time
-        // if it's been a while, add a space
         long currentTime = System.currentTimeMillis();
         KeyCode input = evt.getCode();
-        System.out.println("input: *"+input+"*");
+        System.out.println("input: **" + input + "**");
         if (currentTime - lastInputTime > 1000) {
             morsecodeMessage.appendText(" "); // Add a space if more than 1 second has passed
         }
         if (input.equals(KeyCode.DIGIT1)) {
             morsecodeMessage.appendText(".");
-            //TODO: use a separate "sendingSoundPlayer" in HamRadio?
-            App.radio.getReceivingSoundPlayer().playMorseSymbol(".");
+            double deviation = App.radio.calculateFrequencyDeviation(App.radio.getFrequency());
+            App.radio.getReceivingSoundPlayer().playMorseSymbol(".", deviation);
         } else if (input.equals(KeyCode.DIGIT2)) {
             morsecodeMessage.appendText("-");
-            App.radio.getReceivingSoundPlayer().playMorseSymbol("-");
+            double deviation = App.radio.calculateFrequencyDeviation(App.radio.getFrequency());
+            App.radio.getReceivingSoundPlayer().playMorseSymbol("-", deviation);
         } else {
             System.out.println("Invalid input: Only '1' for dit and '2' for dah are allowed.");
         }
         lastInputTime = currentTime;
         morseInput.clear();
     }
+
 
     @FXML
     public void onTransmitButtonClick() {

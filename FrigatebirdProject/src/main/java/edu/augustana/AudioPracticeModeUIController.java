@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class AudioPracticeModeUIController extends Morse{
+public class AudioPracticeModeUIController extends Morse {
 
     private SoundGenerator randomMorseSound = new SoundGenerator();
 
@@ -22,11 +22,12 @@ public class AudioPracticeModeUIController extends Morse{
     void playSound(ActionEvent event) {
         char randomMorseCode = getRandomLetterFromMorseMap();
         String morseCode = morseMap.get(randomMorseCode);
-        if (morseCode != null){
-            randomMorseSound.playMorseSymbol(morseCode);
+        if (morseCode != null) {
+            // Add a deviation argument when calling playMorseSymbol
+            double defaultDeviation = 0.0; // Set to 0.0 or change based on your logic
+            randomMorseSound.playMorseSymbol(morseCode, defaultDeviation);
         }
         System.out.println("playSound button clicked!");
-
     }
 
     private char getRandomLetterFromMorseMap() {
