@@ -44,17 +44,17 @@ public class SoundGenerator {
         }
     }
 
-    // Method to generate the raw tone data, including distortion based on the deviation
+
     private byte[] generateTone(double frequency, int durationMs, double deviation) {
         int length = (int) (SAMPLE_RATE * (durationMs / 1000.0));
         byte[] buffer = new byte[length];
-        double distortionFactor = Math.min(1.0, deviation / 100.0); // Ensure distortion factor does not exceed 1.0
+        double distortionFactor = Math.min(1.0, deviation / 100.0);
 
         for (int i = 0; i < length; i++) {
             double angle = 2.0 * Math.PI * i * frequency / SAMPLE_RATE;
             double baseWave = Math.sin(angle) * Byte.MAX_VALUE * volume;
 
-            // Add distortion based on the deviation
+
             double noise = Math.random() * 2 - 1; // Random value between -1 and 1
             baseWave = baseWave * (1 - distortionFactor) + noise * Byte.MAX_VALUE * volume * distortionFactor;
 
@@ -63,7 +63,7 @@ public class SoundGenerator {
         return buffer;
     }
 
-    // Play Morse symbols with tones, adjusting the pitch based on the frequency deviation
+
     public void playMorseSymbol(String morseCode, double deviation) {
         final int DOT_DURATION = 100;
         final int DASH_DURATION = 3 * DOT_DURATION;
@@ -73,7 +73,7 @@ public class SoundGenerator {
             char symbol = morseCode.charAt(i);
 
             if (symbol == '.') {
-                playTone(600, DOT_DURATION, deviation); // Pass deviation to adjust pitch and clarity
+                playTone(600, DOT_DURATION, deviation);
             } else if (symbol == '-') {
                 playTone(600, DASH_DURATION, deviation);
             }
@@ -114,7 +114,7 @@ public class SoundGenerator {
 
     public void updateStaticNoiseVolume(double filterLevel) {
         if (staticNoiseThread != null) {
-            staticNoiseThread.updateVolume(filterLevel / 100.0); // Scale filter level to 0.0 - 1.0
+            staticNoiseThread.updateVolume(filterLevel / 100.0);
         }
     }
 }
