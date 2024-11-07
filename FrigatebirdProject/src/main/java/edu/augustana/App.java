@@ -18,6 +18,11 @@ public class App extends Application {
         scene = new Scene(loadFXML("HomePage"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(
+                evt -> {
+                    radio.getReceivingSoundPlayer().stopStaticPlaying();
+                });
+
     }
 
     static void setRoot(String fxml) throws IOException {

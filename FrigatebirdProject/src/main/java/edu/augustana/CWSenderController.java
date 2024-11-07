@@ -1,12 +1,13 @@
 package edu.augustana;
 
-import edu.augustana.sound.SoundGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -39,6 +40,8 @@ public class CWSenderController {
     @FXML private void initialize() {
         frequencyInput.setText("" + App.radio.getFrequency());
 
+        morseInput.setOnKeyPressed(this::handleMorseInput);
+
     }
 
     @FXML
@@ -47,14 +50,19 @@ public class CWSenderController {
     }
 
 
-    public void handleMorseInput() {
-        String input = morseInput.getText().trim();
-
-
-        if (input.equals("1")) {
+    public void handleMorseInput(KeyEvent evt) {
+        // could check System current time millis to see how
+        // much time has passed since the last time
+        // if it's been a while, add a space
+        KeyCode input = evt.getCode();
+        System.out.println("input: *"+input+"*");
+        if (input.equals(KeyCode.DIGIT1)) {
             morsecodeMessage.appendText(".");
-        } else if (input.equals("2")) {
+            //TODO: use a separate "sendingSoundPlayer" in HamRadio?
+            App.radio.getReceivingSoundPlayer().playMorseSymbol(".");
+        } else if (input.equals(KeyCode.DIGIT2)) {
             morsecodeMessage.appendText("-");
+            App.radio.getReceivingSoundPlayer().playMorseSymbol("-");
         } else {
             System.out.println("Invalid input: Only '1' for dit and '2' for dah are allowed.");
         }

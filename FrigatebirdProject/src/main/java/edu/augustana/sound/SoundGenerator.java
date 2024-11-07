@@ -98,8 +98,10 @@ public class SoundGenerator {
     }
 
     public void stopStaticPlaying() {
-        staticNoiseThread.exit();
-        staticNoiseThread = null;
+        if (staticNoiseThread != null) {
+            staticNoiseThread.exit();
+            staticNoiseThread = null;
+        }
     }
 
 }
