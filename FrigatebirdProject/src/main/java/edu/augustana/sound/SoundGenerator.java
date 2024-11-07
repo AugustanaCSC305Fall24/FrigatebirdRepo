@@ -8,7 +8,7 @@ import javax.sound.sampled.*;
 public class SoundGenerator {
 
     private static final int SAMPLE_RATE = 44100;
-    private double volume = 1.0; //Volume (range 0.0 to 1.0)
+    private double volume = 1.0; // Volume (range 0.0 to 1.0)
     private volatile boolean isPlaying = true;
     private static final double WPM = 18;  // Words per minute
     private static final double UNIT_LENGTH = 60.0 / (WPM * 50);  // Unit length in seconds
@@ -21,6 +21,9 @@ public class SoundGenerator {
         this.volume = volume;
     }
 
+    public double getVolume() {
+        return volume;
+    }
 
     // Method to play a tone at a specific frequency and duration
     private void playTone(double frequency, int durationMs) {
@@ -57,7 +60,7 @@ public class SoundGenerator {
     // Play Morse symbols with tones
     public void playMorseSymbol(String morseCode) {
         final int DOT_DURATION = 100;
-        final int DASH_Duration = 3 * DOT_DURATION;
+        final int DASH_DURATION = 3 * DOT_DURATION;
         final long UNIT_MILLIS = (long) (UNIT_LENGTH * 1000);
 
         for (int i = 0; i < morseCode.length(); i++) {
@@ -66,7 +69,7 @@ public class SoundGenerator {
             if (symbol == '.') {
                 playTone(600, DOT_DURATION);
             } else if (symbol == '-') {
-                playTone(600, DASH_Duration);
+                playTone(600, DASH_DURATION);
             }
 
             try {
@@ -104,4 +107,9 @@ public class SoundGenerator {
         }
     }
 
+    public void updateStaticNoiseVolume(double filterLevel) {
+        if (staticNoiseThread != null) {
+            staticNoiseThread.updateVolume(filterLevel / 100.0); // Scale filter level to 0.0 - 1.0
+        }
+    }
 }

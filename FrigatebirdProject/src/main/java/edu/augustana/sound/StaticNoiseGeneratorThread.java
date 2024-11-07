@@ -1,6 +1,5 @@
 package edu.augustana.sound;
 
-import edu.augustana.App;
 import edu.augustana.HAMRadio;
 
 import javax.sound.sampled.*;
@@ -15,17 +14,16 @@ class StaticNoiseGeneratorThread extends Thread {
     final static public int SAMPLE_SIZE = 2;
     final static public int PACKET_SIZE = 5000;
     private final HAMRadio radio;
+    private volatile double volumeScale = 0.5; // Default value for the filter volume
 
     SourceDataLine line;
     public boolean exitExecution = false;
-
 
     public StaticNoiseGeneratorThread(HAMRadio radio) {
         this.radio = radio;
     }
 
     public void run() {
-
         try {
             AudioFormat format = new AudioFormat(44100, 16, 1, true, true);
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format, PACKET_SIZE * 2);
@@ -34,9 +32,8 @@ class StaticNoiseGeneratorThread extends Thread {
                 throw new LineUnavailableException();
             }
 
-            line = (SourceDataLine)AudioSystem.getLine(info);
+            line = (SourceDataLine) AudioSystem.getLine(info);
             line.open(format);
-            //radio.setVolume(App.radio.getVolume());
             line.start();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
@@ -44,12 +41,12 @@ class StaticNoiseGeneratorThread extends Thread {
         }
 
         ByteBuffer buffer = ByteBuffer.allocate(PACKET_SIZE);
-
         Random random = new Random();
-        while (exitExecution == false) {
+
+        while (!exitExecution) {
             buffer.clear();
-            for (int i=0; i < PACKET_SIZE /SAMPLE_SIZE; i++) {
-                buffer.putShort((short) (random.nextGaussian() * Short.MAX_VALUE / 3 * radio.getVolume()));
+            for (int i = 0; i < PACKET_SIZE / SAMPLE_SIZE; i++) {
+                buffer.putShort((short) (random.nextGaussian() * Short.MAX_VALUE / 3 * radio.getVolume() * volumeScale));
             }
             line.write(buffer.array(), 0, buffer.position());
         }
@@ -58,19 +55,21 @@ class StaticNoiseGeneratorThread extends Thread {
         line.close();
     }
 
-    public void exit() {
-        exitExecution =true;
+    public synchronized void updateVolume(double volumeScale) {
+        this.volumeScale = volumeScale;
     }
 
+    public void exit() {
+        exitExecution = true;
+    }
 
     public static void main(String[] args) {
         try {
-            generatorThread = new StaticNoiseGeneratorThread(App.radio);
+            generatorThread = new StaticNoiseGeneratorThread(new HAMRadio());
             generatorThread.start();
             Thread.sleep(10000);
             generatorThread.exit();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

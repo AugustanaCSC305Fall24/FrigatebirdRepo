@@ -5,11 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class TuneUIController {
@@ -19,9 +17,11 @@ public class TuneUIController {
     @FXML
     private Label frequencyLabel;
     @FXML
-    private ComboBox<String> filterModeComboBox;
-    @FXML
     private Slider volumeSlider;
+    @FXML
+    private Slider filterSlider;
+    @FXML
+    private Label filterLabel;
 
     @FXML
     public void initialize() {
@@ -29,23 +29,32 @@ public class TuneUIController {
 
         frequencySlider.setMin(7.00);
         frequencySlider.setMax(7.067);
-        frequencySlider.setValue(radio.getFrequency()/1000);
+        frequencySlider.setValue(radio.getFrequency() / 1000);
 
         frequencySlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double frequency = newVal.doubleValue();
-            frequencyLabel.setText(String.format("%.3f MHz", frequency / 1000));
-            radio.setFrequency(frequency*1000);
+            frequencyLabel.setText(String.format("%.3f MHz", frequency));
+            radio.setFrequency(frequency * 1000);
         });
-
-
 
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
-        volumeSlider.setValue(radio.getVolume()*100.0);
+        volumeSlider.setValue(radio.getVolume() * 100.0);
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double volume = newVal.doubleValue();
-            radio.setVolume(volume/100.0);
+            radio.setVolume(volume / 100.0);
+        });
+
+        filterSlider.setMin(0);
+        filterSlider.setMax(100);
+        filterSlider.setValue(50);
+
+        filterSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            int filterValue = newVal.intValue();
+            filterLabel.setText(String.valueOf(filterValue));
+            radio.setFilterLevel(filterValue);
+            radio.getReceivingSoundPlayer().updateStaticNoiseVolume(filterValue); // Adjust static noise volume in real-time
         });
 
         radio.getReceivingSoundPlayer().startStaticPlaying();
@@ -59,6 +68,10 @@ public class TuneUIController {
 
     @FXML
     public void onNextButtonClick(ActionEvent event) throws IOException {
+        System.out.println("Volume set to: " + App.radio.getVolume());
+        System.out.println("Frequency set to: " + (App.radio.getFrequency() / 1000) + " MHz");
+        System.out.println("Filter level set to: " + App.radio.getFilterLevel());
+
         Stage senderWindow = new Stage();
         senderWindow.setTitle("Fake sender");
 
@@ -68,5 +81,4 @@ public class TuneUIController {
         senderWindow.setScene(senderScene);
         senderWindow.show();
     }
-
 }
