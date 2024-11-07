@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="chatLogBox" prefHeight="506.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CWSenderController">
    <children>
-      <Label layoutX="74.0" layoutY="37.0" prefHeight="17.0" prefWidth="98.0" text="Enter Message" />
+      <Label layoutX="74.0" layoutY="37.0" prefHeight="17.0" prefWidth="140.0" text="Enter Message in English" />
       <TextField fx:id="messageInput" layoutX="22.0" layoutY="60.0" prefHeight="51.0" prefWidth="214.0" />
       <Label layoutX="80.0" layoutY="128.0" prefHeight="17.0" prefWidth="98.0" text="Enter Frequency" />
       <Label layoutX="88.0" layoutY="180.0" prefHeight="62.0" prefWidth="98.0" text="Morse Code" />
@@ -32,6 +32,6 @@
       </TextArea>
       <Button fx:id="backButton" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeAction" text="BACK" />
       <TextField fx:id="morseInput" layoutX="22.0" layoutY="329.0" prefHeight="42.0" prefWidth="214.0" />
-      <Label layoutX="72.0" layoutY="308.0" text="Enter message in Morse" />
+      <Label layoutX="22.0" layoutY="308.0" prefHeight="17.0" prefWidth="206.0" text="Enter message in Morse: 1-dit 2-dah" />
    </children>
 </AnchorPane>
