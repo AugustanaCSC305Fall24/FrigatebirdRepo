@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 import java.awt.*;
 import java.io.IOException;
 
-public class AIScenarioAvalanche extends CWSenderController{
+public class                                                                        AIScenarioAvalanche extends CWSenderController{
 
     @FXML
     private TextArea chatLog;
