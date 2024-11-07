@@ -32,6 +32,8 @@ public class CWSenderController {
     @FXML
     private Button backButton;
 
+    private long lastInputTime = System.currentTimeMillis();
+
     @FXML
     private TextField morseInput;
 
@@ -54,8 +56,12 @@ public class CWSenderController {
         // could check System current time millis to see how
         // much time has passed since the last time
         // if it's been a while, add a space
+        long currentTime = System.currentTimeMillis();
         KeyCode input = evt.getCode();
         System.out.println("input: *"+input+"*");
+        if (currentTime - lastInputTime > 1000) {
+            morsecodeMessage.appendText(" "); // Add a space if more than 1 second has passed
+        }
         if (input.equals(KeyCode.DIGIT1)) {
             morsecodeMessage.appendText(".");
             //TODO: use a separate "sendingSoundPlayer" in HamRadio?
@@ -66,14 +72,14 @@ public class CWSenderController {
         } else {
             System.out.println("Invalid input: Only '1' for dit and '2' for dah are allowed.");
         }
-
+        lastInputTime = currentTime;
         morseInput.clear();
     }
 
     @FXML
     public void onTransmitButtonClick() {
         String message = messageInput.getText();
-
+        String morseCodeText = morsecodeMessage.getText();
         double sendersFrequency = Double.parseDouble(frequencyInput.getText());
 
         if (App.radio.canHear(sendersFrequency)) {
@@ -82,8 +88,12 @@ public class CWSenderController {
             chatLogVBox.getChildren().add(messageLabel);
 
             Morse morseConverter = new Morse();
+            String englishMessage = morseConverter.toEnglish(morseCodeText);
+            appendToChatBox("Translated to English: " + englishMessage);
             String morseCode = morseConverter.toMorse(message);
             morsecodeMessage.setText(morseCode);
+
+
 
             App.radio.receiveMorseMessage(morseCode, sendersFrequency);
 
