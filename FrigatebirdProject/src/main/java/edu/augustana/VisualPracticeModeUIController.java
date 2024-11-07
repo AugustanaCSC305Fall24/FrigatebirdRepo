@@ -15,8 +15,7 @@ public class VisualPracticeModeUIController extends Morse{
     private Button backButton;
 
     @FXML
-    private Button refreshButton; //used for refreshing the symbols
-
+    private Button refreshButton;
     @FXML
     private TextField letterDisplay;
 
@@ -34,13 +33,13 @@ public class VisualPracticeModeUIController extends Morse{
     public void displayLetterAndCheckMorse() {
         // Randomly select a letter using morseMap keys
         currentLetter = getRandomLetterFromMorseMap();
-        letterDisplay.setText(String.valueOf(currentLetter));  // Display letter in UI
+        letterDisplay.setText(String.valueOf(currentLetter));
 
         // Clear previous input
         morseInput.clear();
     }
 
-    // Method called when user submits Morse code input
+
     @FXML
     public void checkMorseCode() {
         String userInput = morseInput.getText().trim();
@@ -54,7 +53,7 @@ public class VisualPracticeModeUIController extends Morse{
         }
     }
 
-    // Utility method to get a random letter from morseMap keys
+
     private char getRandomLetterFromMorseMap() {
         List<Character> letters = new ArrayList<>(morseMap.keySet());
         Random random = new Random();

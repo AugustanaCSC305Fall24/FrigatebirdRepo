@@ -52,8 +52,7 @@ public class AudioPracticeModeUIController extends Morse {
         lastGeneratedLetter = randomMorseCode;
         String morseCode = morseMap.get(randomMorseCode);
         if (morseCode != null) {
-            // Add a deviation argument when calling playMorseSymbol
-            double defaultDeviation = 0.0; // Set to 0.0 or change based on your logic
+            double defaultDeviation = 0.0;
             randomMorseSound.playMorseSymbol(morseCode, defaultDeviation);
         }
         System.out.println("playSound button clicked!");

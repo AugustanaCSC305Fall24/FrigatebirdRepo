@@ -40,7 +40,7 @@ public class CWSenderController {
 
 
     @FXML private void initialize() {
-        frequencyInput.setText("" + App.radio.getFrequency());
+        frequencyInput.setText("" );
 
         morseInput.setOnKeyPressed(this::handleMorseInput);
 

@@ -54,7 +54,7 @@ public class TuneUIController {
             int filterValue = newVal.intValue();
             filterLabel.setText(String.valueOf(filterValue));
             radio.setFilterLevel(filterValue);
-            radio.getReceivingSoundPlayer().updateStaticNoiseVolume(filterValue); // Adjust static noise volume in real-time
+            radio.getReceivingSoundPlayer().updateStaticNoiseVolume(filterValue);
         });
 
         radio.getReceivingSoundPlayer().startStaticPlaying();
