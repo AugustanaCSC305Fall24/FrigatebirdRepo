@@ -44,11 +44,6 @@ public class CWSenderController {
 
     }
 
-    @FXML
-    public void backToHomeAction(ActionEvent event) throws IOException {
-        App.setRoot("HomePage");
-    }
-
 
     public void handleMorseInput(KeyEvent evt) {
         // could check System current time millis to see how

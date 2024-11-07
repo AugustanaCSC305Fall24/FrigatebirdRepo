@@ -30,7 +30,6 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </TextArea>
-      <Button fx:id="backButton" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHomeAction" text="BACK" />
       <TextField fx:id="morseInput" layoutX="22.0" layoutY="329.0" prefHeight="42.0" prefWidth="214.0" />
       <Label layoutX="22.0" layoutY="308.0" prefHeight="17.0" prefWidth="206.0" text="Enter message in Morse: 1-dit 2-dah" />
    </children>
