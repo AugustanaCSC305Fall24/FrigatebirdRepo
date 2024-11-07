@@ -10,8 +10,7 @@
    <children>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToPracticeModeAction" text="BACK" />
       <Button layoutX="64.0" layoutY="183.0" mnemonicParsing="false" onAction="#playSound" prefHeight="53.0" prefWidth="134.0" text="CW Sound" />
-      <Button layoutX="256.0" layoutY="293.0" mnemonicParsing="false" text="REFRESH" />
-      <TextField layoutX="327.0" layoutY="197.0" style="-fx-border-color: blue;" />
+      <TextField fx:id = "userInputField" layoutX="327.0" layoutY="197.0" onAction="#checkMessage" style="-fx-border-color: blue;" />
       <Label layoutX="312.0" layoutY="163.0" text="Enter the English Translation: ">
          <font>
             <Font name="Arial Black" size="13.0" />
