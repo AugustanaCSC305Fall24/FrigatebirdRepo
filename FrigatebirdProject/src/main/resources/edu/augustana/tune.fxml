@@ -9,22 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="296.0" prefWidth="263.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TuneUIController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TuneUIController">
     <children>
         <Button mnemonicParsing="false" onAction="#backToHomeAction" text="Back" />
-        <VBox alignment="CENTER" layoutX="50" layoutY="50" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="140.0" spacing="10">
-            <!-- Frequency Controls -->
+        <VBox alignment="CENTER" layoutX="50" layoutY="50" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" spacing="10">
             <Label text="Frequency (MHz)" />
             <Slider fx:id="frequencySlider" max="7.067" min="7.000" value="7.000" />
             <Label fx:id="frequencyLabel" text="7.000 MHz" />
-
-            <!-- Filter Mode Controls -->
-
-
-            <!-- Volume Controls -->
             <Label text="Volume" />
             <Slider fx:id="volumeSlider" max="100" min="0" value="50" />
+            <Label text="Filter Control" />
+            <Slider fx:id="filterSlider" max="100" min="0" value="50" />
+            <Label fx:id="filterLabel" text="50" />
         </VBox>
-        <Button layoutX="190.0" layoutY="300.0" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next" />
+        <Button layoutX="190.0" layoutY="350.0" mnemonicParsing="false" onAction="#onNextButtonClick" text="Next" />
     </children>
 </AnchorPane>
