@@ -15,10 +15,11 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </TextArea>
-      <TextField fx:id="messageSender" layoutX="87.0" layoutY="321.0" prefHeight="45.0" prefWidth="448.0" promptText="Enter message" style="-fx-border-color: grey;">
+      <TextField fx:id="messageSender" layoutX="76.0" layoutY="320.0" prefHeight="45.0" prefWidth="393.0" promptText="Enter message" style="-fx-border-color: grey;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
+      <Button layoutX="471.0" layoutY="330.0" mnemonicParsing="false" onAction="#translateMorseInput" prefHeight="26.0" prefWidth="72.0" text="Translate" />
    </children>
 </AnchorPane>
