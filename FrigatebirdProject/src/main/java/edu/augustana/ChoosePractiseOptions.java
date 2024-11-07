@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,13 +15,13 @@ public class ChoosePractiseOptions {
     private URL location;
 
     @FXML
-    void SwitchToAudio(ActionEvent event) {
-
+    void SwitchToAudio(ActionEvent event) throws IOException {
+        App.setRoot("AudioPracticeMode");
     }
 
     @FXML
-    void SwitchToVisual(ActionEvent event) {
-
+    void SwitchToVisual(ActionEvent event) throws IOException {
+        App.setRoot("VisualPracticeMode");
     }
 
     @FXML

@@ -26,8 +26,8 @@ public class VisualPracticeModeUIController extends Morse{
     private char currentLetter;
 
     @FXML
-    public void backToHomeAction(ActionEvent event) throws IOException {
-        App.setRoot("HomePage");
+    public void backToPractiseModeAction(ActionEvent event) throws IOException {
+        App.setRoot("PractiseOption");
     }
     // Method to display a random letter and check Morse code input
     @FXML
