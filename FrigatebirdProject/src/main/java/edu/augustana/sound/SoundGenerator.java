@@ -63,6 +63,9 @@ public class SoundGenerator {
         return buffer;
     }
 
+    public double getUnitLength(){
+        return UNIT_LENGTH;
+    }
     // Play Morse symbols with tones, adjusting the pitch based on the frequency deviation
     public void playMorseSymbol(String morseCode, double deviation) {
         final int DOT_DURATION = 100;
