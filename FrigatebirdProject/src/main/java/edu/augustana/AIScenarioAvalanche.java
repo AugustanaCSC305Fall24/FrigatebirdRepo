@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-<<<<<<< HEAD
-public class  b   AIScenarioAvalanche extends CWSenderController{
-=======
-public class                                                                        AIScenarioAvalanche extends CWSenderController{
->>>>>>> 85908ed076feb019ac07c1a74d59fc0221bbd9a4
+
+public class AIScenarioAvalanche extends CWSenderController{
+
 
     @FXML
     private TextArea chatLog;
