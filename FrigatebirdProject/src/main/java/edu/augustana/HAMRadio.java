@@ -3,26 +3,15 @@ package edu.augustana;
 import edu.augustana.sound.SoundGenerator;
 
 public class HAMRadio {
-    private double frequency;
-    private double volume;
-    private int filterLevel; // Filter level to control noise
-    private SoundGenerator receivingSoundPlayer;
-
+    private double frequency = 7067;
+    private double volume = 0.5;
+    private int filterLevel = 50;
+    private final SoundGenerator receivingSoundPlayer = new SoundGenerator();
     private static final double FREQUENCY_TOLERANCE = 100.0;
-
-    public HAMRadio() {
-        this.frequency = 7067; // 15 MHz
-        this.volume = 0.50;
-        this.filterLevel = 50; // Default filter level
-        this.receivingSoundPlayer = new SoundGenerator();
-    }
 
     public void setFrequency(double frequency) {
         if (frequency >= 7000 && frequency <= 7067) {
             this.frequency = frequency;
-            System.out.println("Frequency set to: " + (frequency / 1000) + " MHz");
-        } else {
-            System.out.println("Error: Frequency out of range.");
         }
     }
 
@@ -31,12 +20,7 @@ public class HAMRadio {
     }
 
     public void setFilterLevel(int filterLevel) {
-        if (filterLevel >= 0 && filterLevel <= 100) {
-            this.filterLevel = filterLevel;
-            System.out.println("Filter level set to: " + filterLevel);
-        } else {
-            System.out.println("Error: Filter level out of range.");
-        }
+        this.filterLevel = filterLevel;
     }
 
     public int getFilterLevel() {
@@ -44,13 +28,8 @@ public class HAMRadio {
     }
 
     public void setVolume(double volume) {
-        if (volume >= 0 && volume <= 1) {
-            this.volume = volume;
-            this.receivingSoundPlayer.setVolume(volume);
-            System.out.println("Volume set to: " + volume);
-        } else {
-            throw new IllegalArgumentException("Error: Volume out of range.");
-        }
+        this.volume = volume;
+        receivingSoundPlayer.setVolume(volume);
     }
 
     public double getVolume() {
@@ -58,11 +37,11 @@ public class HAMRadio {
     }
 
     public boolean canHear(double sendersFrequency) {
-        return (Math.abs(sendersFrequency - frequency) <= FREQUENCY_TOLERANCE);
+        return Math.abs(sendersFrequency - frequency) <= FREQUENCY_TOLERANCE;
     }
 
     public double calculateFrequencyDeviation(double sendersFrequency) {
-        return Math.abs(this.frequency - sendersFrequency);
+        return Math.abs(frequency - sendersFrequency);
     }
 
     public void receiveMorseMessage(String morseCode, double freq) {
@@ -72,14 +51,5 @@ public class HAMRadio {
 
     public SoundGenerator getReceivingSoundPlayer() {
         return receivingSoundPlayer;
-    }
-
-    @Override
-    public String toString() {
-        return "HAMRadio{" +
-                "frequency=" + frequency +
-                ", volume=" + volume +
-                ", filterLevel=" + filterLevel +
-                '}';
     }
 }
