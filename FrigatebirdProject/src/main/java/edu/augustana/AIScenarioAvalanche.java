@@ -105,7 +105,7 @@ public class AIScenarioAvalanche extends CWSenderController{
     }
         public void sendRandomMorseMessage() {
         // List of possible messages
-        ArrayList<String> messages = new ArrayList<>(Arrays.asList("We need water","We are stuck","Send Helicopter"));
+        ArrayList<String> messages = new ArrayList<>(Arrays.asList("water","stuck","Helicopter"));
         Random random = new Random();
 
         // Generate a random index and select a message

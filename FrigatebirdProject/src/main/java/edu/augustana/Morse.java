@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Morse {
-    public Map<Character, String> morseMap = new HashMap();
+    public static Map<Character, String> morseMap = new HashMap();
     public Map<String, Character> morseToCharMap = new HashMap<>();
     public Morse() {
         this.morseMap.put('A', ".-");
@@ -61,6 +61,9 @@ public class Morse {
         for (Map.Entry<Character, String> entry : morseMap.entrySet()) {
             morseToCharMap.put(entry.getValue(), entry.getKey());
         }
+    }
+    public static Map<Character, String> getMorseMap() {
+        return morseMap;
     }
 
     public String toMorse(String message) {

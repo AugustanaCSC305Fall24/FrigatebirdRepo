@@ -5,9 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class VisualPracticeModeUIController extends Morse{
 
@@ -17,12 +14,14 @@ public class VisualPracticeModeUIController extends Morse{
     @FXML
     private Button refreshButton;
     @FXML
-    private TextField letterDisplay;
+    public TextField letterDisplay;
 
     @FXML
-    private TextField morseInput;
+    public TextField morseInput;
 
-    private char currentLetter;
+    public char currentLetter;
+
+    private VisualMorsePractice visualMorsePractice;
 
     @FXML
     public void backToPractiseModeAction(ActionEvent event) throws IOException {
@@ -31,8 +30,7 @@ public class VisualPracticeModeUIController extends Morse{
     // Method to display a random letter and check Morse code input
     @FXML
     public void displayLetterAndCheckMorse() {
-        // Randomly select a letter using morseMap keys
-        currentLetter = getRandomLetterFromMorseMap();
+        currentLetter = visualMorsePractice.getRandomLetter();
         letterDisplay.setText(String.valueOf(currentLetter));
 
         // Clear previous input
@@ -43,22 +41,22 @@ public class VisualPracticeModeUIController extends Morse{
     @FXML
     public void checkMorseCode() {
         String userInput = morseInput.getText().trim();
-        String correctMorse = morseMap.get(currentLetter);
 
-        // Check if the input matches the Morse code for the displayed letter
-        if (userInput.equals(correctMorse)) {
+        // Check if the input matches the Morse code
+        if (visualMorsePractice.isMorseCodeCorrect(currentLetter, userInput)) {
             showAlert("Correct!", "You entered the correct Morse code.");
         } else {
+            String correctMorse = visualMorsePractice.getMorseCode(currentLetter);
             showAlert("Incorrect", "The correct Morse code for " + currentLetter + " is " + correctMorse + ".");
         }
     }
 
 
-    private char getRandomLetterFromMorseMap() {
-        List<Character> letters = new ArrayList<>(morseMap.keySet());
-        Random random = new Random();
-        return letters.get(random.nextInt(letters.size()));
-    }
+//    private char getRandomLetterFromMorseMap() {
+//        List<Character> letters = new ArrayList<>(morseMap.keySet());
+//        Random random = new Random();
+//        return letters.get(random.nextInt(letters.size()));
+//    }
 
     // Utility method to show alert messages
     private void showAlert(String title, String message) {
@@ -70,6 +68,7 @@ public class VisualPracticeModeUIController extends Morse{
     }
 
     public void initialize(){
+        visualMorsePractice = new VisualMorsePractice(Morse.getMorseMap());
         displayLetterAndCheckMorse();
     }
 }
