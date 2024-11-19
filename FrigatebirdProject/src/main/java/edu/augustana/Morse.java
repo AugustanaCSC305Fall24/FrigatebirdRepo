@@ -67,28 +67,27 @@ public class Morse {
     }
 
     public String toMorse(String message) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         message = message.toUpperCase();
-        boolean first = true;
-        char[] var4 = message.toCharArray();
-        int var5 = var4.length;
+        boolean newWord = true;
 
-        for(int i = 0; i < var5; ++i) {
-            char c = var4[i];
-            if (this.morseMap.containsKey(c)) {
-                if (!first) {
-                    result = result + " ";
+        for (char c : message.toCharArray()) {
+            if (c == ' ') {
+                result.append("   ");
+                newWord = true;
+            } else {
+                String morseCode = morseMap.get(c);
+                if (morseCode != null) {
+                    if (!newWord) {
+                        result.append(" ");
+                    }
+                    result.append(morseCode);
+                    newWord = false;
                 }
 
-                result = result + (String)this.morseMap.get(c);
-                first = false;
-            } else if (c == ' ') {
-                result = result + "   ";
-                first = true;
             }
         }
-
-        return result;
+        return result.toString();
     }
 
 
