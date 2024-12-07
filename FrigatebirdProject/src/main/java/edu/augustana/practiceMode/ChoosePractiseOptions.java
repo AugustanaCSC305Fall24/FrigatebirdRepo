@@ -1,8 +1,10 @@
-package edu.augustana;
+package edu.augustana.practiceMode;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import edu.augustana.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 

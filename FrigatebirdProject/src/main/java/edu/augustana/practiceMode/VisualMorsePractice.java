@@ -1,4 +1,4 @@
-package edu.augustana;
+package edu.augustana.practiceMode;
 
 
 import java.util.ArrayList;

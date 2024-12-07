@@ -1,12 +1,14 @@
-package edu.augustana;
+package edu.augustana.practiceMode;
 
+import edu.augustana.App;
+import edu.augustana.Morse;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class VisualPracticeModeUIController extends Morse{
+public class VisualPracticeModeUIController extends Morse {
 
     @FXML
     private Button backButton;

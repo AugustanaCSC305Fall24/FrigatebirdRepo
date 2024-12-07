@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="enterButton" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.VisualPracticeModeUIController">
+<AnchorPane fx:id="enterButton" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.practiceMode.VisualPracticeModeUIController">
    <children>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToPractiseModeAction" text="BACK" style="-fx-background-color: #5f9ea0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" />
 

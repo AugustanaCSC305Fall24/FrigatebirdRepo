@@ -1,12 +1,13 @@
-package edu.augustana;
+package edu.augustana.practiceMode;
 
+import edu.augustana.App;
+import edu.augustana.Morse;
 import edu.augustana.sound.SoundGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
