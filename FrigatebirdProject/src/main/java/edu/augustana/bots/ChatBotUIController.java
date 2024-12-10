@@ -1,8 +1,11 @@
 package edu.augustana.bots;
 
+import java.io.IOException;
 import java.util.Random;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import edu.augustana.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -27,6 +30,12 @@ public class ChatBotUIController {
 
     @FXML
     private TextArea textArea;
+
+    @FXML
+    void returnToLobby() throws IOException {
+        App.setRoot("HomePage");
+
+    }
 
     @FXML
     void initialize() {

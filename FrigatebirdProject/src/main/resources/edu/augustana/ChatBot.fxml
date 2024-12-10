@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.augustana.bots.ChatBotUIController">
+<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.bots.ChatBotUIController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Return to Lobby">
+            <Button mnemonicParsing="false" onAction="#returnToLobby" text="Return to Lobby">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
