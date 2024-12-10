@@ -36,6 +36,14 @@ public class CWSenderController {
 
     @FXML
     private TextField morseInput;
+    private boolean isFromRemoteClient;
+
+    public void setFromRemoteClient(boolean fromRemoteClient) {
+        this.isFromRemoteClient = fromRemoteClient;
+    }
+    public boolean isFromRemoteClient(){
+        return isFromRemoteClient();
+    }
 
 
 
@@ -97,7 +105,7 @@ public class CWSenderController {
             System.out.println("Error: Frequency mismatch.");
         }
     }
-    private void appendToChatBox(String message) {
+    public void appendToChatBox(String message) {
 
         chatBox.appendText(message + "\n");
     }

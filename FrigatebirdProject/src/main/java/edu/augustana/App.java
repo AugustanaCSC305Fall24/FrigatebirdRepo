@@ -1,17 +1,27 @@
 package edu.augustana;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.URI;
+
+import jakarta.websocket.*;
+import com.google.gson.Gson;
 
 
+@ClientEndpoint
 public class App extends Application {
 
     private static Scene scene;
     public static HAMRadio radio = new HAMRadio();
+    private Session webSocketSession = null;
+    private static App app;
+    private CWSenderController CWsender;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -23,6 +33,48 @@ public class App extends Application {
                     radio.getReceivingSoundPlayer().stopStaticPlaying();
                 });
 
+    }
+
+    @Override
+    public void stop() {
+        if (isConnectedToServer()) {
+            try {
+                webSocketSession.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void connectToServer(String serverIPAddress, String userName) {
+        try {
+            if (isConnectedToServer()) {
+                app.webSocketSession.close();
+            }
+            WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+            app.webSocketSession = container.connectToServer(app, new URI("ws://"+serverIPAddress+":8000/ws/"+userName));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Platform.runLater(() -> new Alert(Alert.AlertType.ERROR, "Error connecting to server! " + e.getMessage()).show());
+        }
+    }
+    public static boolean isConnectedToServer() {
+        return app.webSocketSession != null && app.webSocketSession.isOpen();
+    }
+
+    public static void sendMessageToServer(CWSenderController msg) {
+        if (isConnectedToServer()) {
+            String jsonMessage = new Gson().toJson(msg);
+            System.out.println("DEBUG: Sending WebSocket message: " + jsonMessage);
+            app.webSocketSession.getAsyncRemote().sendText(jsonMessage);
+        }
+    }
+
+    @OnMessage
+    public void onMessage(String jsonMessage) {
+        System.out.println("DEBUG: Received WebSocket message: " + jsonMessage);
+        CWSenderController chatMessage = new Gson().fromJson(jsonMessage, CWSenderController.class);
+        chatMessage.setFromRemoteClient(true);
+        CWsender.appendToChatBox(jsonMessage);
     }
 
    public static void setRoot(String fxml) throws IOException {
