@@ -2,6 +2,8 @@ module edu.augustana {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires tyrus.standalone.client;
+    requires com.google.gson;
 
     opens edu.augustana to javafx.fxml;
     exports edu.augustana;
@@ -9,4 +11,5 @@ module edu.augustana {
     opens edu.augustana.sound to javafx.fxml;
     exports edu.augustana.practiceMode;
     opens edu.augustana.practiceMode to javafx.fxml;
+    opens edu.augustana.bots to javafx.fxml;
 }
