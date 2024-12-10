@@ -100,6 +100,8 @@ public class CWSenderController {
             App.radio.receiveMorseMessage(morseCode, sendersFrequency);
 
             System.out.println("Message transmitted: " + message);
+            CWMessage messageToServer = new CWMessage(morseCode, sendersFrequency);
+            App.sendMessageToServer(messageToServer);
         } else {
             morsecodeMessage.setText("Frequency out of range.");
             System.out.println("Error: Frequency mismatch.");

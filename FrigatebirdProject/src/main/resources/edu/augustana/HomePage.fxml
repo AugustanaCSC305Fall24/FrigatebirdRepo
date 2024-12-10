@@ -16,7 +16,8 @@
             <Font name="Chalkboard SE Regular" size="18.0" />
          </font>
       </Label>
-      <Button onAction="#switchToTuningView" style="-fx-background-color: #ff6347; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="Tune Radio" />
+      <Button onAction="#switchToSenderRadio" style="-fx-background-color: #ff6347; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="Sender Radio" />
+      <Button onAction="#switchToReceiverRadio" style="-fx-background-color: #4682b4; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="Receiver Radio" />
       <Button mnemonicParsing="false" onAction="#switchToPracticeMode" style="-fx-background-color: #ffa07a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="Practice Mode" />
       <Button mnemonicParsing="false" onAction="#switchToAISceneMode" style="-fx-background-color: #ffa07a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" text="Avalanche AI" />
       <Button mnemonicParsing="false" onAction="#switchtoGeminiAI" text="Gemini AI" />

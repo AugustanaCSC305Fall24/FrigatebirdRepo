@@ -5,7 +5,7 @@ module edu.augustana {
     requires tyrus.standalone.client;
     requires com.google.gson;
 
-    opens edu.augustana to javafx.fxml;
+    opens edu.augustana to javafx.fxml, com.google.gson;
     exports edu.augustana;
     exports edu.augustana.sound;
     opens edu.augustana.sound to javafx.fxml;
