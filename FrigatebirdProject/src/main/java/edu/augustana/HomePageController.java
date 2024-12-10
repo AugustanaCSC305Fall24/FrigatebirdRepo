@@ -19,5 +19,10 @@ public class HomePageController {
     private void switchToAISceneMode() throws IOException{
         App.setRoot("AIScenarioAvalanche");
     }
+
+    @FXML
+    void switchtoGeminiAI() throws IOException {
+        App.setRoot("ChatBot");
+    }
 }
 
