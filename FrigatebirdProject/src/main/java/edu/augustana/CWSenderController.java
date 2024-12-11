@@ -103,6 +103,7 @@ public class CWSenderController {
     public void appendToChatBox(String message) {
 
         chatBox.appendText(message + "\n");
+
     }
 
 }

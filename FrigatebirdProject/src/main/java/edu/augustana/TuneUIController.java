@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class TuneUIController {
@@ -31,7 +32,7 @@ public class TuneUIController {
     public void initialize() {
         HAMRadio radio = App.radio;
 
-        // Frequency Slider Configuration
+
         frequencySlider.setMin(7.00);
         frequencySlider.setMax(7.067);
         frequencySlider.setValue(radio.getFrequency() / 1000);
@@ -42,7 +43,7 @@ public class TuneUIController {
             radio.setFrequency(frequency * 1000);
         });
 
-        // Volume Slider Configuration
+
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
         volumeSlider.setValue(radio.getVolume() * 100.0);
@@ -52,27 +53,42 @@ public class TuneUIController {
             radio.setVolume(volume / 100.0);
         });
 
-        // Filter Slider Configuration (Set to 1000, 2000, 3000)
+
         filterSlider.setMin(1000);
         filterSlider.setMax(3000);
-        filterSlider.setMajorTickUnit(1000);
-        filterSlider.setMinorTickCount(0); // No smaller divisions
+        filterSlider.setMajorTickUnit(1);
+        filterSlider.setMinorTickCount(0);
         filterSlider.setSnapToTicks(true); // Snap to the 1000, 2000, 3000 points
-        filterSlider.setValue(2000); // Default value
+        filterSlider.setValue(2000);
+
 
         filterSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             int filterValue = newVal.intValue();
             filterLabel.setText(String.valueOf(filterValue));
-            radio.setFilterLevel(filterValue);
-            radio.getReceivingSoundPlayer().updateStaticNoiseVolume(filterValue);
+
+            // Map filter value to a noise volume range (0.0 to 1.0)
+            double noiseVolume = mapFilterToVolume(filterValue, 1000, 3000, 0.0, 1.0);
+
+            // Update the static noise volume dynamically
+            if (radio.getReceivingSoundPlayer() != null) {
+                radio.getReceivingSoundPlayer().updateStaticNoiseVolume(noiseVolume);
+            }
         });
 
-        radio.getReceivingSoundPlayer().startStaticPlaying();
+
+
+        if (radio.getReceivingSoundPlayer() != null) {
+            radio.getReceivingSoundPlayer().startStaticPlaying();
+        } else {
+            System.err.println("Error: ReceivingSoundPlayer not initialized.");
+        }
     }
 
     @FXML
     void backToHomeAction(ActionEvent event) throws IOException {
-        App.radio.getReceivingSoundPlayer().stopStaticPlaying();
+        if (App.radio.getReceivingSoundPlayer() != null) {
+            App.radio.getReceivingSoundPlayer().stopStaticPlaying();
+        }
         App.setRoot("HomePage");
     }
 
@@ -90,5 +106,10 @@ public class TuneUIController {
         Scene senderScene = new Scene(root, 600, 400);
         senderWindow.setScene(senderScene);
         senderWindow.show();
+    }
+
+    // Utility method to map filter range (1000-3000) to volume range (0.0-1.0)
+    private double mapFilterToVolume(int filterValue, int minFilter, int maxFilter, double minVolume, double maxVolume) {
+        return minVolume + ((double) (filterValue - minFilter) / (maxFilter - minFilter)) * (maxVolume - minVolume);
     }
 }
