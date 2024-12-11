@@ -27,6 +27,6 @@ public class HomePageController {
 
     @FXML
     private void switchtoGeminiAI() throws IOException {
-        App.setRoot("ChatBot");
+        App.setRoot("AIController");
     }
 }

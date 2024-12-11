@@ -1,75 +1,46 @@
 package edu.augustana.bots;
+import edu.augustana.Data.ChatMessage;
+import edu.augustana.Data.ChatRoom;
+import javafx.scene.paint.Color;
 
-import java.io.IOException;
-import java.util.Random;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
-import edu.augustana.App;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-
-public class ChatBotUIController {
-//    private final String name;
-//    private final Color textColor;
-//    private final ChatRoom room;
+public abstract class ChatBotUIController {
+    private final String name;
+    private final Color textColor;
+    private final ChatRoom room;
 
     private static final Random randomGen = new Random();
 
-
-    @FXML
-    private TextArea chatBot;
-
-    @FXML
-    private TextArea textArea;
-
-    @FXML
-    void returnToLobby() throws IOException {
-        App.setRoot("HomePage");
-
+    public ChatBotUIController(String name, Color textColor, ChatRoom room) {
+        this.name = name;
+        this.textColor = textColor;
+        this.room = room;
     }
 
-    @FXML
-    void initialize() {
-        assert chatBot != null : "fx:id=\"chatBot\" was not injected: check your FXML file 'ChatBot.fxml'.";
-        assert textArea != null : "fx:id=\"textArea\" was not injected: check your FXML file 'ChatBot.fxml'.";
-
+    public String getName() {
+        return name;
+    }
+    public Color getTextColor() {
+        return textColor;
+    }
+    public ChatRoom getRoom() {
+        return room;
     }
 
-
-
-
-//    public ChatBot(String name, Color textColor, ChatRoom room) {
-//        this.name = name;
-//        this.textColor = textColor;
-//        this.room = room;
-//    }
-
-//    public String getName() {
-//
-//        return name;
-//    }
-//
-//    public Color getTextColor() {
-//        return textColor;
-//    }
-//    //public ChatRoom getRoom()
-//        return room;
-
-
+    /** Ask this bot to generate some message and send it to the chat room. */
+    public abstract void requestMessage();
 
     public static String getRandomBotName() {
-    String[] names = {"Alice", "Bubba", "Candy", "Doodles", "Egbert", "Fifi", "Gus", "Holly", "Iggy",
-            "Jasper", "Kiki", "Lulu", "Mimi", "Noodles", "Oscar", "Penny", "Quincy", "Rufus", "Sally",
-            "Toby", "Ursula", "Violet", "Wally", "Xander", "Yolanda", "Zelda"};
-    String[] adjectives = {"Awesome", "Bodacious", "Clunker", "Dude", "Eery", "Funky", "Goosey", "Happy",
-            "Hippy", "Irritable", "Jolly", "Kooky", "Lunker", "Messy", "Nut", "Optometrist", "Punky",
-            "Quirky", "Rumpled", "Snarky", "Tree", "Unknown", "Vixen", "Wonk", "Xenial", "Yummy",
-            "Zany"};
-    String name = names[randomGen.nextInt(names.length)];
-    String adjective = adjectives[ChatBotUIController.randomGen.nextInt(adjectives.length)];
-    return name + " the " + adjective;
-
+        String[] names = {"Alice", "Bubba", "Candy", "Doodles", "Egbert", "Fifi", "Gus", "Holly", "Iggy",
+                "Jasper", "Kiki", "Lulu", "Mimi", "Noodles", "Oscar", "Penny", "Quincy", "Rufus", "Sally",
+                "Toby", "Ursula", "Violet", "Wally", "Xander", "Yolanda", "Zelda"};
+        String[] adjectives = {"Awesome", "Bodacious", "Clunker", "Dude", "Eery", "Funky", "Goosey", "Happy",
+                "Hippy", "Irritable", "Jolly", "Kooky", "Lunker", "Messy", "Nut", "Optometrist", "Punky",
+                "Quirky", "Rumpled", "Snarky", "Tree", "Unknown", "Vixen", "Wonk", "Xenial", "Yummy",
+                "Zany"};
+        String name =names[randomGen.nextInt(names.length)];
+        String adjective = adjectives[randomGen.nextInt(adjectives.length)];
+        return  name + " the " + adjective;
     }
 }
-
