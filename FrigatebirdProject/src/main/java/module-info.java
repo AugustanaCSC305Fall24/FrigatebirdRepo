@@ -4,6 +4,8 @@ module edu.augustana {
     requires java.desktop;
     requires tyrus.standalone.client;
     requires com.google.gson;
+    requires swiss.ameri.gemini.api;
+    requires swiss.ameri.gemini.gson;
 
     opens edu.augustana to javafx.fxml, com.google.gson;
     exports edu.augustana;

@@ -17,14 +17,6 @@ public class ChatBotUIController {
     private static final Random randomGen = new Random();
 
 
-
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
     @FXML
     private TextArea chatBot;
 
