@@ -1,24 +1,25 @@
-//package edu.augustana.bots;
-//
-//
-//import javafx.scene.paint.Color;
-//import swiss.ameri.gemini.api.*;
-//import swiss.ameri.gemini.gson.GsonJsonParser;
-//import swiss.ameri.gemini.spi.JsonParser;
-//
-//public class GeminiBot extends ChatBot {
-//
-//    private String systemPromptText;
-//    private JsonParser parser;
-//    GenAi genAi;
-//
-//
+package edu.augustana.bots;
+
+import javafx.scene.paint.Color;
+import swiss.ameri.gemini.api.*;
+import swiss.ameri.gemini.gson.GsonJsonParser;
+import swiss.ameri.gemini.spi.JsonParser;
+
+
+public class GeminiBot extends ChatBotUIController {
+
+    private String systemPromptText;
+    private JsonParser parser;
+    GenAi genAi;
+
+
 //    public GeminiBot(String name, Color textColor, ChatRoom room, String systemPromptText) {
 //        super(name, textColor, room);
 //        this.systemPromptText = systemPromptText;
 //        this.parser = new GsonJsonParser();
 //        this.genAi = new GenAi(GeminiAPITest.getGeminiApiKey(), parser);
 //    }
+
 //    public String toString() {
 //        return getName() + " [Birdwatcher]";
 //    }
@@ -74,4 +75,4 @@
 //                .build();
 //    }
 //
-//}
+}
