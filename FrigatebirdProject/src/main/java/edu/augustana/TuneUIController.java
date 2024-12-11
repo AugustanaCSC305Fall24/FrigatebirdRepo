@@ -55,7 +55,7 @@ public class TuneUIController {
         // Filter Slider Configuration (Set to 1000, 2000, 3000)
         filterSlider.setMin(1000);
         filterSlider.setMax(3000);
-        filterSlider.setMajorTickUnit(1000);
+        filterSlider.setMajorTickUnit(1);
         filterSlider.setMinorTickCount(0); // No smaller divisions
         filterSlider.setSnapToTicks(true); // Snap to the 1000, 2000, 3000 points
         filterSlider.setValue(2000); // Default value
@@ -83,7 +83,7 @@ public class TuneUIController {
         System.out.println("Filter level set to: " + App.radio.getFilterLevel());
 
         Stage senderWindow = new Stage();
-        senderWindow.setTitle("Fake sender");
+        senderWindow.setTitle("ender");
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("CWSender.fxml"));
         Parent root = fxmlLoader.load();
