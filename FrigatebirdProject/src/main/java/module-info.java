@@ -6,6 +6,7 @@ module edu.augustana {
     requires com.google.gson;
     requires swiss.ameri.gemini.api;
     requires swiss.ameri.gemini.gson;
+    requires java.net.http;
 
     opens edu.augustana to javafx.fxml, com.google.gson;
     exports edu.augustana;
