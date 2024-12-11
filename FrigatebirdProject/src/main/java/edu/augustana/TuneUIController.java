@@ -14,12 +14,16 @@ public class TuneUIController {
 
     @FXML
     private Slider frequencySlider;
+
     @FXML
     private Label frequencyLabel;
+
     @FXML
     private Slider volumeSlider;
+
     @FXML
     private Slider filterSlider;
+
     @FXML
     private Label filterLabel;
 
@@ -27,6 +31,7 @@ public class TuneUIController {
     public void initialize() {
         HAMRadio radio = App.radio;
 
+        // Frequency Slider Configuration
         frequencySlider.setMin(7.00);
         frequencySlider.setMax(7.067);
         frequencySlider.setValue(radio.getFrequency() / 1000);
@@ -37,6 +42,7 @@ public class TuneUIController {
             radio.setFrequency(frequency * 1000);
         });
 
+        // Volume Slider Configuration
         volumeSlider.setMin(0);
         volumeSlider.setMax(100);
         volumeSlider.setValue(radio.getVolume() * 100.0);
@@ -46,9 +52,13 @@ public class TuneUIController {
             radio.setVolume(volume / 100.0);
         });
 
-        filterSlider.setMin(0);
-        filterSlider.setMax(100);
-        filterSlider.setValue(50);
+        // Filter Slider Configuration (Set to 1000, 2000, 3000)
+        filterSlider.setMin(1000);
+        filterSlider.setMax(3000);
+        filterSlider.setMajorTickUnit(1000);
+        filterSlider.setMinorTickCount(0); // No smaller divisions
+        filterSlider.setSnapToTicks(true); // Snap to the 1000, 2000, 3000 points
+        filterSlider.setValue(2000); // Default value
 
         filterSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             int filterValue = newVal.intValue();

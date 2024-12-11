@@ -104,11 +104,11 @@ public class AIScenarioAvalanche extends CWSenderController{
         morseCodeBuilder.setLength(0);
     }
         public void sendRandomMorseMessage() {
-        // List of possible messages
+
         ArrayList<String> messages = new ArrayList<>(Arrays.asList("water","stuck","Helicopter"));
         Random random = new Random();
 
-        // Generate a random index and select a message
+
             int randomIndex = random.nextInt(messages.size());
             String selectedMessage = messages.get(randomIndex);
 

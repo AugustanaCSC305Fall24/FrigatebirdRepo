@@ -7,7 +7,7 @@ module edu.augustana {
     requires swiss.ameri.gemini.api;
     requires swiss.ameri.gemini.gson;
 
-    opens edu.augustana to javafx.fxml;
+    opens edu.augustana to javafx.fxml, com.google.gson;
     exports edu.augustana;
     exports edu.augustana.sound;
     opens edu.augustana.sound to javafx.fxml;

@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import edu.augustana.sound.SoundGenerator;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Random;
 
 import jakarta.websocket.*;
 import com.google.gson.Gson;
@@ -25,6 +27,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        app = this;
+        connectToServer("34.55.199.24", "person"+new Random().nextInt(1000000));
         scene = new Scene(loadFXML("HomePage"), 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -61,7 +65,7 @@ public class App extends Application {
         return app.webSocketSession != null && app.webSocketSession.isOpen();
     }
 
-    public static void sendMessageToServer(CWSenderController msg) {
+    public static void sendMessageToServer(CWMessage msg) {
         if (isConnectedToServer()) {
             String jsonMessage = new Gson().toJson(msg);
             System.out.println("DEBUG: Sending WebSocket message: " + jsonMessage);
@@ -72,9 +76,10 @@ public class App extends Application {
     @OnMessage
     public void onMessage(String jsonMessage) {
         System.out.println("DEBUG: Received WebSocket message: " + jsonMessage);
-        CWSenderController chatMessage = new Gson().fromJson(jsonMessage, CWSenderController.class);
-        chatMessage.setFromRemoteClient(true);
-        CWsender.appendToChatBox(jsonMessage);
+        CWMessage chatMessage = new Gson().fromJson(jsonMessage, CWMessage.class);
+        radio.receiveMorseMessage(chatMessage.getMorseMessage(), chatMessage.getFrequency());
+//        chatMessage.setFromRemoteClient(true);
+//        CWsender.appendToChatBox(jsonMessage);
     }
 
    public static void setRoot(String fxml) throws IOException {

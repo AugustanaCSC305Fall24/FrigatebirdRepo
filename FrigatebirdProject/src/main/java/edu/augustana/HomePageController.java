@@ -6,23 +6,27 @@ import javafx.fxml.FXML;
 public class HomePageController {
 
     @FXML
-    private void switchToTuningView() throws IOException {
+    private void switchToSenderRadio() throws IOException {
         App.setRoot("tune");
     }
 
     @FXML
-    private void switchToPracticeMode() throws IOException{
+    private void switchToReceiverRadio() throws IOException {
+        App.setRoot("receiver");
+    }
+
+    @FXML
+    private void switchToPracticeMode() throws IOException {
         App.setRoot("practiseOption");
     }
 
     @FXML
-    private void switchToAISceneMode() throws IOException{
+    private void switchToAISceneMode() throws IOException {
         App.setRoot("AIScenarioAvalanche");
     }
 
     @FXML
-    void switchtoGeminiAI() throws IOException {
+    private void switchtoGeminiAI() throws IOException {
         App.setRoot("ChatBot");
     }
 }
-
