@@ -52,4 +52,6 @@ public class HAMRadio {
     public SoundGenerator getReceivingSoundPlayer() {
         return receivingSoundPlayer;
     }
+
+
 }

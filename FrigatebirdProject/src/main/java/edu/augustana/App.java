@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import edu.augustana.sound.ReceiverController;
 import edu.augustana.sound.SoundGenerator;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -8,13 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Random;
 
 import jakarta.websocket.*;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.net.URI;
+import java.util.Random;
 
 @ClientEndpoint
 public class App extends Application {
@@ -23,12 +24,12 @@ public class App extends Application {
     public static HAMRadio radio = new HAMRadio();
     private Session webSocketSession = null;
     private static App app;
-    private CWSenderController CWsender;
+    private static ReceiverController receiverController;
 
     @Override
     public void start(Stage stage) throws IOException {
         app = this;
-        connectToServer("34.55.199.24", "person"+new Random().nextInt(1000000));
+        connectToServer("34.55.199.24", "person" + new Random().nextInt(1000000));
         scene = new Scene(loadFXML("HomePage"), 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -49,18 +50,20 @@ public class App extends Application {
             }
         }
     }
+
     public static void connectToServer(String serverIPAddress, String userName) {
         try {
             if (isConnectedToServer()) {
                 app.webSocketSession.close();
             }
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            app.webSocketSession = container.connectToServer(app, new URI("ws://"+serverIPAddress+":8000/ws/"+userName));
+            app.webSocketSession = container.connectToServer(app, new URI("ws://" + serverIPAddress + ":8000/ws/" + userName));
         } catch (Exception e) {
             e.printStackTrace();
             Platform.runLater(() -> new Alert(Alert.AlertType.ERROR, "Error connecting to server! " + e.getMessage()).show());
         }
     }
+
     public static boolean isConnectedToServer() {
         return app.webSocketSession != null && app.webSocketSession.isOpen();
     }
@@ -73,16 +76,22 @@ public class App extends Application {
         }
     }
 
+    public static void setReceiverController(ReceiverController controller) {
+        receiverController = controller;
+    }
+
     @OnMessage
     public void onMessage(String jsonMessage) {
         System.out.println("DEBUG: Received WebSocket message: " + jsonMessage);
         CWMessage chatMessage = new Gson().fromJson(jsonMessage, CWMessage.class);
-        radio.receiveMorseMessage(chatMessage.getMorseMessage(), chatMessage.getFrequency());
-//        chatMessage.setFromRemoteClient(true);
-//        CWsender.appendToChatBox(jsonMessage);
+
+        // Notify ReceiverController of the received message
+        if (receiverController != null) {
+            Platform.runLater(() -> receiverController.displayReceivedMessage(chatMessage));
+        }
     }
 
-   public static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         Parent root = loader.load();
         scene.setRoot(root);
@@ -96,5 +105,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

@@ -52,7 +52,7 @@ public class AIScenarioAvalanche extends CWSenderController{
         alert.setContentText(message);
         alert.showAndWait();
     }
-    @Override
+
     public void handleMorseInput(KeyEvent evt) {
         long currentTime = System.currentTimeMillis();
         KeyCode input = evt.getCode();

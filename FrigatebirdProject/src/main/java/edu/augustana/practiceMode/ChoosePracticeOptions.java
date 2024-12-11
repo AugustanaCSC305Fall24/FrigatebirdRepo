@@ -8,7 +8,7 @@ import edu.augustana.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class ChoosePractiseOptions {
+public class ChoosePracticeOptions {
 
     @FXML
     private ResourceBundle resources;

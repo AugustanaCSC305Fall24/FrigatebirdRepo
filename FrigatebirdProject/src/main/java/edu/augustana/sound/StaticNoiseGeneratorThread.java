@@ -16,6 +16,7 @@ class StaticNoiseGeneratorThread extends Thread {
         this.radio = radio;
     }
 
+    @Override
     public void run() {
         try {
             AudioFormat format = new AudioFormat(44100, 16, 1, true, true);
@@ -34,6 +35,7 @@ class StaticNoiseGeneratorThread extends Thread {
         while (!exitExecution) {
             buffer.clear();
             for (int i = 0; i < 2500; i++) {
+                // Use the updated volumeScale dynamically
                 buffer.putShort((short) (random.nextGaussian() * Short.MAX_VALUE / 3 * radio.getVolume() * volumeScale));
             }
             line.write(buffer.array(), 0, buffer.position());
@@ -42,6 +44,7 @@ class StaticNoiseGeneratorThread extends Thread {
         line.drain();
         line.close();
     }
+
 
     public synchronized void updateVolume(double volumeScale) {
         this.volumeScale = volumeScale;
