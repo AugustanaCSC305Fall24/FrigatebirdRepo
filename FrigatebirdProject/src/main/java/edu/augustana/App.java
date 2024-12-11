@@ -78,8 +78,8 @@ public class App extends Application {
         System.out.println("DEBUG: Received WebSocket message: " + jsonMessage);
         CWMessage chatMessage = new Gson().fromJson(jsonMessage, CWMessage.class);
         radio.receiveMorseMessage(chatMessage.getMorseMessage(), chatMessage.getFrequency());
-//        chatMessage.setFromRemoteClient(true);
-//        CWsender.appendToChatBox(jsonMessage);
+        chatMessage.setFromRemoteClient(true);
+        CWsender.appendToChatBox(jsonMessage);
     }
 
    public static void setRoot(String fxml) throws IOException {

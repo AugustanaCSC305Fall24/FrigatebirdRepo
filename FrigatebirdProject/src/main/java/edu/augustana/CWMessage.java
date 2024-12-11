@@ -4,6 +4,14 @@ public class CWMessage {
 
     private final String morseMessage;
     private final double frequency;
+    private boolean isFromRemoteClient;
+
+    public void setFromRemoteClient(boolean fromRemoteClient) {
+        this.isFromRemoteClient = fromRemoteClient;
+    }
+    public boolean isFromRemoteClient(){
+        return isFromRemoteClient();
+    }
 
     public CWMessage(String morseMessage, double frequency) {
         this.morseMessage = morseMessage;

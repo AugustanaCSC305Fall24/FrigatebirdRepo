@@ -36,14 +36,7 @@ public class CWSenderController {
 
     @FXML
     private TextField morseInput;
-    private boolean isFromRemoteClient;
 
-    public void setFromRemoteClient(boolean fromRemoteClient) {
-        this.isFromRemoteClient = fromRemoteClient;
-    }
-    public boolean isFromRemoteClient(){
-        return isFromRemoteClient();
-    }
 
 
 
